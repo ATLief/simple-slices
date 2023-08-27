@@ -1,0 +1,13 @@
+# ATL
+[Slice]
+#CPUAccounting=yes
+CPUWeight=200
+#IOAccounting=yes
+IOWeight=200
+#MemoryAccounting=yes
+MemoryLow=40%
+MemoryHigh=90%
+MemoryMax=99%
+
+[Unit]
+Description=High priority level
