@@ -1,3 +1,3 @@
-define(`ss_weight', `100')
-include(`inc/mh.m4')
-include(`inc/slice.m4')
+define(`ss_weight', `100')dnl
+include(`inc/mh.m4')dnl
+include(`inc/slice.m4')dnl

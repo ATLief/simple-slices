@@ -1,12 +1,7 @@
-
-
-
-
-
 [Unit]
 Description=Lowest mlp level
 Documentation=man:systemd.slice
-Before=slices.target
+Before=simple-slices.target
 
 [Slice]
 #CPUAccounting=yes
@@ -19,6 +14,4 @@ MemoryHigh=80%
 MemoryMax=95%
 
 #[Install]
-#WantedBy=slices.target
-
-
+#WantedBy=simple-slices.target

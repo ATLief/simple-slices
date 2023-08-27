@@ -1,4 +1,4 @@
-define(`ss_desc', `Highest mlp level')
-define(`ss_weight', `25')
-include(`inc/ml.m4')
-include(`inc/template.slice.m4')
+define(`ss_desc', `Highest mlp level')dnl
+define(`ss_weight', `25')dnl
+include(`inc/ml.m4')dnl
+include(`inc/template.slice.m4')dnl

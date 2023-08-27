@@ -1,11 +1,7 @@
-
-
-
-
 [Unit]
 Description=Low priority level
 Documentation=man:systemd.slice
-Before=slices.target
+Before=simple-slices.target
 
 [Slice]
 #CPUAccounting=yes
@@ -18,6 +14,4 @@ MemoryHigh=35%
 MemoryMax=50%
 
 #[Install]
-#WantedBy=slices.target
-
-
+#WantedBy=simple-slices.target

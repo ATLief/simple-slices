@@ -1,2 +1,2 @@
 #[Install]
-#WantedBy=slices.target
+#WantedBy=simple-slices.target

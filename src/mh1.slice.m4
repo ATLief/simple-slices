@@ -1,4 +1,4 @@
-define(`ss_desc', `Lowest mhp level')
-define(`ss_weight', `75')
-include(`inc/mh.m4')
-include(`inc/template.slice.m4')
+define(`ss_desc', `Lowest mhp level')dnl
+define(`ss_weight', `75')dnl
+include(`inc/mh.m4')dnl
+include(`inc/template.slice.m4')dnl
