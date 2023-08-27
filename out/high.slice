@@ -1,4 +1,13 @@
-# ATL
+
+
+
+
+
+[Unit]
+Description=High priority level
+Documentation=man:systemd.slice
+Before=slices.target
+
 [Slice]
 #CPUAccounting=yes
 CPUWeight=200
@@ -9,5 +18,7 @@ MemoryLow=40%
 MemoryHigh=90%
 MemoryMax=99%
 
-[Unit]
-Description=High priority level
+#[Install]
+#WantedBy=slices.target
+
+

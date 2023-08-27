@@ -1,0 +1,24 @@
+
+
+
+
+
+[Unit]
+Description=Highest mlp level
+Documentation=man:systemd.slice
+Before=slices.target
+
+[Slice]
+#CPUAccounting=yes
+CPUWeight=25
+#IOAccounting=yes
+IOWeight=25
+#MemoryAccounting=yes
+
+MemoryHigh=80%
+MemoryMax=95%
+
+#[Install]
+#WantedBy=slices.target
+
+

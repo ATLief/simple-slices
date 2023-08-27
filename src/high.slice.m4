@@ -1,0 +1,6 @@
+define(`ss_desc', `High priority level')
+define(`ss_weight', `200')
+define(`ss_mem_low', `40')
+define(`ss_mem_high', `90')
+define(`ss_mem_max', `99')
+include(`inc/template.slice.m4')

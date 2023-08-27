@@ -1,9 +1,0 @@
-# ATL
-[Slice]
-#CPUAccounting=yes
-CPUWeight=25
-#IOAccounting=yes
-IOWeight=25
-
-[Unit]
-Description=Highest mlp level

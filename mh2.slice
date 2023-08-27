@@ -1,9 +1,0 @@
-# ATL
-[Slice]
-#CPUAccounting=yes
-CPUWeight=125
-#IOAccounting=yes
-IOWeight=125
-
-[Unit]
-Description=Highest mhp level

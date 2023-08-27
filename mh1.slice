@@ -1,9 +1,0 @@
-# ATL
-[Slice]
-#CPUAccounting=yes
-CPUWeight=75
-#IOAccounting=yes
-IOWeight=75
-
-[Unit]
-Description=Lowest mhp level

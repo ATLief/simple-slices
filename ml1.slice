@@ -1,9 +1,0 @@
-# ATL
-[Slice]
-#CPUAccounting=yes
-CPUWeight=10
-#IOAccounting=yes
-IOWeight=10
-
-[Unit]
-Description=Lowest mlp level

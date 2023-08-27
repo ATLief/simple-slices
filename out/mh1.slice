@@ -1,0 +1,25 @@
+
+
+
+
+
+
+[Unit]
+Description=Lowest mhp level
+Documentation=man:systemd.slice
+Before=slices.target
+
+[Slice]
+#CPUAccounting=yes
+CPUWeight=75
+#IOAccounting=yes
+IOWeight=75
+#MemoryAccounting=yes
+MemoryLow=20%
+MemoryHigh=85%
+MemoryMax=99%
+
+#[Install]
+#WantedBy=slices.target
+
+
