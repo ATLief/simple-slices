@@ -1,0 +1,5 @@
+simple-slices (0.2.5-1) UNRELEASED; urgency=medium
+
+  * Initial release. (Closes: #nnnn)  <nnnn is the bug number of your ITP>
+
+ -- Alex Lieflander <public@atlief.com>  Mon, 28 Aug 2023 09:33:42 -0400
