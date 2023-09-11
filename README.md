@@ -1,6 +1,8 @@
 # simple-slices
 A small set of SystemD slices with various priorities
 
+Note: You can now build (and hopefully install) the package! The packaging and installation have not yet been thoroughly tested.
+
 SystemD includes a feature called "slices", which combines services into groups that are preferentially given access to computing resources based on their assigned priority (similar to "nice" and "ionice"); if the system isn't resource-constrained, these priorities have no effect. Despite their usefulness, few people seem use them—likely due to their complexity.
 
 This package contains 6 pre-made slices (in addition to the 2 default slices included with SystemD) with hand-picked priority values that seem to work well for most applications. Each slice defines a priority for CPU utilization, IO utilization, and memory usage; future versions may also support priority for network utilization and core scheduling on hybrid CPUs. This allows the user to quickly and easily choose which commands and services should be given priority when the system is under load. See the manual for details, but know that it's quite easy.
