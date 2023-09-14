@@ -15,6 +15,7 @@ Package: simple-slices
 Architecture: all
 Depends:
  ${misc:Depends},
+ systemd,
 Recommends:
  simple-slices-bin,
 Description: A small set of systemd slices with various priorities
@@ -28,7 +29,10 @@ Package: simple-slices-bin
 Architecture: all
 Depends:
  ${misc:Depends},
- simple-slices
+ simple-slices,
+ coreutils,
+ util-linux,
+ systemd,
 Description: Short placeholder description
  Longer placeholder description
  .
