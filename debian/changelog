@@ -1,4 +1,4 @@
-simple-slices (0.3.0) UNRELEASED; urgency=medium
+simple-slices (0.3.0-1) UNRELEASED; urgency=medium
 
   * Fixed package building / formatting
   * Added simple-slices-bin package
