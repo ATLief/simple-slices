@@ -1,5 +1,12 @@
-simple-slices (0.2.6-1) UNRELEASED; urgency=medium
+simple-slices (0.3.0) UNRELEASED; urgency=medium
+
+  * Fixed package building / formatting
+  * Added simple-slices-bin package
+
+ -- Alex Lieflander <public@atlief.com>  Thu, 14 Sep 2023 00:31:51 -0400
+
+simple-slices (0.2.6-1) unstable; urgency=medium
 
   * Initial release. (Closes: #nnnn)  <nnnn is the bug number of your ITP>
 
- -- Alex Lieflander <public@atlief.com>  Mon, 28 Aug 2023 19:44:34 -0400
+ -- Alex Lieflander <public@atlief.com>  Sun, 10 Sep 2023 23:04:14 -0400

@@ -1,0 +1,8 @@
+#!/bin/bash
+name=`basename "$0"`
+opt_user_arg=
+if [ "$(id -u)" -gt 0 ]; then
+	opt_user_arg="--user"
+fi
+systemd-run $opt_user_arg --scope --same-dir --quiet --slice="$(rev <<< "$name" | cut -c 2- | rev).slice" "$@"
+exit $?

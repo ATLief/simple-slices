@@ -2,11 +2,14 @@
 
 main: hier low.slice ml1.slice ml2.slice mh1.slice mh2.slice high.slice user.slice.d.conf system.slice.d.conf
 	cp simple-slices.target build/systemd/
+	cp ssexec_sym build/bin/
 
 hier:
-	mkdir -p build/systemd build/snippets
+	mkdir -p build/bin build/profile build/systemd build/snippets
 
 %.slice: hier
+	echo "alias ${*}p='${*}p '" >> build/profile/simple-slices.sh
+	ln -s ./ssexec_sym "build/bin/${*}p"
 	m4 -D ss_slice=$@ inc/service.m4 >"build/snippets/${*}.conf"
 	m4 $@.m4 > build/systemd/$*.slice
 
