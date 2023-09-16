@@ -1,2 +1,2 @@
-build/systemd/* usr/lib/systemd/system/
+build/systemd/* lib/systemd/system/
 build/snippets/* usr/share/simple-slices/snippets

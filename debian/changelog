@@ -1,3 +1,12 @@
+simple-slices (0.3.2-1) unstable; urgency=medium
+
+  * Removed usr path prefix from SystemD install file
+    * Now triggers SystemD install hooks
+      * Enables and starts the installed units by default
+  * Removed usr path prefix from bin install file
+
+ -- Alex Lieflander <public@atlief.com>  Sat, 16 Sep 2023 16:47:43 -0400
+
 simple-slices (0.3.1-1) unstable; urgency=medium
 
   * Added references to remaining runtime dependencies

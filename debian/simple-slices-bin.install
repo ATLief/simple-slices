@@ -1,2 +1,2 @@
-build/bin/* usr/bin/
+build/bin/* bin/
 build/profile/* etc/profile.d/
