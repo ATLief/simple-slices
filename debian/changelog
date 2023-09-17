@@ -1,3 +1,9 @@
+simple-slices (0.3.3-1) UNRELEASED; urgency=medium
+
+  * TBC
+
+ -- Alex Lieflander <public@atlief.com>  Sun, 17 Sep 2023 13:17:05 -0400
+
 simple-slices (0.3.2-1) unstable; urgency=medium
 
   * Removed usr path prefix from SystemD install file
