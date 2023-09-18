@@ -1,6 +1,7 @@
 simple-slices (0.3.3-1) UNRELEASED; urgency=medium
 
-  * TBC
+  * Refactored "code"
+  * Added commented out task (quantity) accounting directives
 
  -- Alex Lieflander <public@atlief.com>  Sun, 17 Sep 2023 13:17:05 -0400
 
