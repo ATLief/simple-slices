@@ -3,9 +3,10 @@
 main: hier low.slice ml1.slice ml2.slice mh1.slice mh2.slice high.slice user.slice.d.conf system.slice.d.conf
 	cp simple-slices.target build/systemd/
 	cp ssexec_sym build/bin/
+	cp modules.conf build/modules/simple-slices.conf
 
 hier:
-	mkdir -p build/bin build/profile build/systemd build/snippets
+	mkdir -p build/bin build/profile build/systemd build/snippets build/modules
 
 %.slice: hier
 	echo "alias ${*}p='${*}p '" >> build/profile/simple-slices.sh
