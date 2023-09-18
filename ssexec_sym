@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 name=`basename "$0"`
 opt_user_arg=
 if [ "$(id -u)" -gt 0 ]; then
