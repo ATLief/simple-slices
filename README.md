@@ -1,7 +1,7 @@
 # simple-slices
 A small set of SystemD slices with various priorities
 
-Note: You can now build (and hopefully install) the package! The packaging and installation have not yet been thoroughly tested.
+**Note: This project is not ready for production yet!**
 
 SystemD includes a feature called "slices", which combines services into groups that are preferentially given access to computing resources based on their assigned priority (similar to "nice" and "ionice"); if the system isn't resource-constrained, these priorities have no effect. Despite their usefulness, few people seem use them—likely due to their complexity.
 
