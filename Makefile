@@ -1,12 +1,13 @@
 #.SUFFIXES: .slice.m4 .slice
 
 main: hier low.slice ml1.slice ml2.slice mh1.slice mh2.slice high.slice user.slice.d.conf system.slice.d.conf
-	cp simple-slices.target build/systemd/
+	cp simple-slices.target simple-slices.service build/systemd/
 	cp ssexec_sym build/bin/
 	cp modules.conf build/modules/simple-slices.conf
+	cp simple-slices.sh build/lib/
 
 hier:
-	mkdir -p build/bin build/profile build/systemd build/snippets build/modules
+	mkdir -p build/bin build/profile build/systemd build/snippets build/modules build/lib
 
 %.slice: hier
 	echo "alias ${*}p='${*}p '" >> build/profile/simple-slices.sh

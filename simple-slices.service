@@ -1,0 +1,10 @@
+[Unit]
+Description=Perform other initializations for Simple Slices
+#Documentation=man:systemd.resource-control
+
+[Service]
+Type=oneshot
+ExecStart=/lib/simple-slices/simple-slices.sh
+
+[Install]
+WantedBy=sysinit.target

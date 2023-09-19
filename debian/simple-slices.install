@@ -1,3 +1,4 @@
 build/systemd/* lib/systemd/system/
 build/snippets/* usr/share/simple-slices/snippets
 build/modules/* etc/modules-load.d/
+build/lib/* lib/simple-slices/
