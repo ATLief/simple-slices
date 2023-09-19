@@ -16,6 +16,7 @@ Architecture: all
 Depends:
  ${misc:Depends},
  systemd,
+ udev,
 Recommends:
  simple-slices-bin,
 Description: A small set of systemd slices with various priorities
