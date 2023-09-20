@@ -1,8 +1,8 @@
-simple-slices (0.4.1-1) UNRELEASED; urgency=medium
+simple-slices (0.4.1-1) unstable; urgency=high
 
   * Fix broken commands (replace shell redirection with piped echo)
 
- -- Alex Lieflander <public@atlief.com>  Wed, 20 Sep 2023 15:51:01 -0400
+ -- Alex Lieflander <public@atlief.com>  Wed, 20 Sep 2023 17:49:25 -0400
 
 simple-slices (0.4.0-1) unstable; urgency=medium
 
