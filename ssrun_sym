@@ -1,0 +1,3 @@
+#!/bin/sh
+ssrun "$(basename "$0" | rev | cut -c 2- | rev).slice" "$@"
+exit $?
