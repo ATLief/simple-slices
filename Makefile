@@ -7,7 +7,7 @@ main: hier low.slice ml1.slice ml2.slice mh1.slice mh2.slice high.slice user.sli
 	cp udev.rules build/udev/simple-slices.rules
 
 hier:
-	mkdir -p build/bin build/profile build/systemd build/snippets build/modules build/udev
+	mkdir -p build/bin build/profile build/systemd build/snippets build/modules build/udev build/doc
 
 %.slice: hier
 	echo "alias ${*}p='${*}p '" >> build/profile/simple-slices.sh
@@ -18,6 +18,9 @@ hier:
 %.slice.d.conf: hier
 	mkdir build/systemd/$*.slice.d
 	m4 $@.m4 > build/systemd/$*.slice.d/simple-slices.conf
+
+%.man.md: hier
+	pandoc --standalone --from=markdown --to=man $@ --output="build/doc/${*}"
 
 clean:
 	rm -rf build
