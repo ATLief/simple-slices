@@ -5,6 +5,7 @@ Maintainer: Alex Lieflander <public@atlief.com>
 Rules-Requires-Root: no
 Build-Depends:
  debhelper-compat (= 13),
+ coreutils,
  m4,
  pandoc,
 Standards-Version: 4.6.2
