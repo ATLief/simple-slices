@@ -1,73 +1,46 @@
-% simple-slices(SECTION) | User Commands
+% ssrun(1) | User Commands
 %
-% "August 28 2023"
-
-[comment]: # The lines above form a Pandoc metadata block. They must be
-[comment]: # the first ones in the file.
-[comment]: # See https://pandoc.org/MANUAL.html#metadata-blocks for details.
-
-[comment]: # pandoc -s -f markdown -t man package.md -o package.1
-[comment]: # 
-[comment]: # A manual page package.1 will be generated. You may view the
-[comment]: # manual page with: nroff -man package.1 | less. A typical entry
-[comment]: # in a Makefile or Makefile.am is:
-[comment]: # 
-[comment]: # package.1: package.md
-[comment]: #         pandoc --standalone --from=markdown --to=man $< --output=$@
-[comment]: # 
-[comment]: # The pandoc binary is found in the pandoc package. Please remember
-[comment]: # that if you create the nroff version in one of the debian/rules
-[comment]: # file targets, such as build, you will need to include pandoc in
-[comment]: # your Build-Depends control field.
-
-[comment]: # Remove the lines starting with '[comment]:' in this file in order
-[comment]: # to avoid warning messages from pandoc.
+% "September 21 2023"
 
 # NAME
 
-simple-slices - program to do something
+ssrun - program to do something
 
 # SYNOPSIS
 
-**simple-slices** **-e** _this_ [**\-\-example=that**] [{**-e** | **\-\-example**} _this_]
-                 [{**-e** | **\-\-example**} {_this_ | _that_}]
+**ssrun** _slice_ [_systemd-run options_] _command_ [_command arguments_]
 
-**simple-slices** [{**-h** | *\-\-help**} | {**-v** | **\-\-version**}]
+**ssrun** [{**-h** | **\-\-help**} | {**-v** | **\-\-version**}]
 
 # DESCRIPTION
 
-This manual page documents briefly the **simple-slices** and **bar** commands.
+This manual page documents briefly the **ssrun** command and (symbolic links of) the **ssrun_sym** command.
 
-This manual page was written for the Debian distribution because the
-original program does not have a manual page. Instead, it has documentation
-in the GNU info(1) format; see below.
+**ssrun** is a somewhat simple wrapper of **systemd-run**; it creates a SystemD scope, assigns that scope to the specified slice, and then executes the specified command within the scope. The scope (and thus the command) attachs to the current TTY and inherits all environment variables, as if that command was executed without the wrapper.
 
-**simple-slices** is a program that...
+If **ssrun** is executed as a user with UID 0 (usually the root user), **systemd-run** is executed in system mode. Otherwise it is executed in user mode.
+
+**Note: the PID of this command invocation is currently not the same as the PID of the command executed within the scope.**
 
 # OPTIONS
 
-The program follows the usual GNU command line syntax, with long options
-starting with two dashes ('-'). A summary of options is included below. For
-a complete description, see the **info**(1) files.
+**ssrun** relies on a single positional argument for which slice the command should be assigned to. All other arguments are passed to **systemd-run**; which arguments are interpreted as **systemd-run** options, the command, or the command's arguments are determined by that command. See the relevant documentation for details.
 
-**-e** _this_, **\-\-example=**_that_
-:   Does this and that.
+(Symbolic links) of **ssrun_sym** internally call **ssrun** with the base of their name automatically provided as the first positional argument. All other arguments are appended to that call. Thus, these "commands" pass all specified arguments to **systemd-run**, and the desired slice is specified by using the respective symlink.
 
-**-h**, **\-\-help**
-:   Show summary of options.
+**ssrun** automatically appends **\-\-system** to the **systemd-run** options if the effective UID of the invoking user is 0 (usually the root user). Otherwise it appends the **\-\-user** option. This behavior can be overridden by additionally supplying one of these options before the desired command.
 
-**-v**, **\-\-version**
-:   Show version of program.
+When run in user mode...
 
 # FILES
 
 /etc/foo.conf
 :   The system-wide configuration file to control the behaviour of
-    simple-slices. See **foo.conf**(5) for further details.
+    ssrun. See **foo.conf**(5) for further details.
 
 ${HOME}/.foo.conf
 :   The per-user configuration file to control the behaviour of
-    simple-slices. See **foo.conf**(5) for further details.
+    ssrun. See **foo.conf**(5) for further details.
 
 # ENVIRONMENT
 
@@ -83,7 +56,7 @@ Bad configuration file. Exiting.
 :   The configuration file seems to contain a broken configuration
     line. Use the **\-\-verbose** option, to get more info.
 
-**simple-slices** provides some return codes, that can be used in scripts:
+**ssrun** provides some return codes, that can be used in scripts:
 
     Code Diagnostic
     0 Program exited successfully.
@@ -97,10 +70,7 @@ The upstream BTS can be found at http://bugzilla.foo.tld.
 
 # SEE ALSO
 
-**bar**(1), **baz**(1), **foo.conf**(5)
-
-The programs are documented fully by The Rise and Fall of a Fooish Bar
-available via the **info**(1) system.
+**simple-slices**(8), **systemd-run**(1), **systemd.scope**(1)
 
 # AUTHOR
 
@@ -120,7 +90,3 @@ any later version published by the Free Software Foundation.
 
 On Debian systems, the complete text of the GNU General Public License
 can be found in /usr/share/common-licenses/GPL.
-
-[comment]: #  Local Variables:
-[comment]: #  mode: markdown
-[comment]: #  End:
