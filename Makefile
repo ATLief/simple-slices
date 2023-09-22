@@ -9,7 +9,7 @@ hier:
 	mkdir -p build/bin build/profile build/systemd build/snippets build/modules build/udev build/doc
 
 %.target: hier
-	cp $@ build/systemd/
+	m4 $@.m4 > build/systemd/$*.target
 
 %.slice: hier
 	echo "alias ${*}p='${*}p '" >> build/profile/simple-slices.sh
