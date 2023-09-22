@@ -1,7 +1,8 @@
 #!/bin/sh
-opt_user_arg=
 if [ "$(id -u)" -gt 0 ]; then
-	opt_user_arg="--user"
+	systemd_mode="--user"
+else
+	systemd_mode="--system"
 fi
-systemd-run $opt_user_arg --scope --same-dir --quiet --slice "$@"
+systemd-run $systemd_mode --scope --same-dir --quiet --slice "$@"
 exit $?
