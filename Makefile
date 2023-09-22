@@ -10,14 +10,14 @@ hier:
 
 %.target: hier
 	m4 $@.m4 > build/systemd/system/$@
-	m4 $@.m4 > build/systemd/user/$@
+	m4 -D ss_is_user=true $@.m4 > build/systemd/user/$@
 
 %.slice: hier
 	echo "alias ${*}p='${*}p '" >> build/profile/simple-slices.sh
 	ln -s ./ssrun_sym "build/bin/${*}p"
 	m4 -D ss_slice=$@ inc/service.m4 >"build/snippets/${*}.conf"
 	m4 $@.m4 > build/systemd/system/$@
-	m4 $@.m4 > build/systemd/user/$@
+	m4 -D ss_is_user=true $@.m4 > build/systemd/user/$@
 
 %.system.slice.d.conf: hier
 	mkdir build/systemd/system/$*.slice.d
