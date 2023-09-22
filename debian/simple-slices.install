@@ -1,4 +1,5 @@
-build/systemd/* lib/systemd/system/
+build/systemd/system/* lib/systemd/system/
+build/systemd/user/* lib/systemd/user/
 build/snippets/* usr/share/simple-slices/snippets
 build/modules/* etc/modules-load.d/
 build/udev/* lib/udev/rules.d/
