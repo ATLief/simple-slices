@@ -1,7 +1,6 @@
 #.SUFFIXES: .slice.m4 .slice
 
 main: hier simple-slices.target low.slice ml1.slice ml2.slice mh1.slice mh2.slice high.slice user.slice.d.conf system.slice.d.conf simple-slices.8.man.md ssrun.1.man.md
-	cp simple-slices.target build/systemd/
 	cp ssrun ssrun_sym build/bin/
 	cp modules.conf build/modules/simple-slices.conf
 	cp udev.rules build/udev/simple-slices.rules
