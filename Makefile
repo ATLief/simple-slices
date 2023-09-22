@@ -1,6 +1,6 @@
 #.SUFFIXES: .slice.m4 .slice
 
-main: hier low.slice ml1.slice ml2.slice mh1.slice mh2.slice high.slice user.slice.d.conf system.slice.d.conf simple-slices.8.man.md ssrun.1.man.md
+main: hier simple-slices.target low.slice ml1.slice ml2.slice mh1.slice mh2.slice high.slice user.slice.d.conf system.slice.d.conf simple-slices.8.man.md ssrun.1.man.md
 	cp simple-slices.target build/systemd/
 	cp ssrun ssrun_sym build/bin/
 	cp modules.conf build/modules/simple-slices.conf
@@ -8,6 +8,9 @@ main: hier low.slice ml1.slice ml2.slice mh1.slice mh2.slice high.slice user.sli
 
 hier:
 	mkdir -p build/bin build/profile build/systemd build/snippets build/modules build/udev build/doc
+
+%.target: hier
+	cp $@ build/systemd/
 
 %.slice: hier
 	echo "alias ${*}p='${*}p '" >> build/profile/simple-slices.sh
