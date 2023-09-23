@@ -1,4 +1,4 @@
-simple-slices (0.4.2-1) UNRELEASED; urgency=medium
+simple-slices (0.4.2-1) unstable; urgency=medium
 
   * Added user mode version of most SystemD units
   * Refactored and simplified code
@@ -7,7 +7,7 @@ simple-slices (0.4.2-1) UNRELEASED; urgency=medium
   * Added previously missing coreutils to Build-Depends
   * Added placeholder manpages
 
- -- Alex Lieflander <public@atlief.com>  Wed, 20 Sep 2023 19:57:52 -0400
+ -- Alex Lieflander <public@atlief.com>  Fri, 22 Sep 2023 22:55:33 -0400
 
 simple-slices (0.4.1-1) unstable; urgency=high
 
