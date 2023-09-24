@@ -12,7 +12,7 @@ hier:
 
 %.slice: hier
 	echo "alias ${*}p='${*}p '" >> build/profile/simple-slices.sh
-	ln -s ./ssrun_sym "build/bin/${*}p"
+	ln -sf ./ssrun_sym "build/bin/${*}p"
 	m4 -D ss_slice=$@ inc/service.m4 >"build/snippets/${*}.conf"
 	m4 -D ss_cmd_name="${*}p" $@.m4 > build/systemd/system/$@
 	m4 -D ss_cmd_name="${*}p" -D ss_is_user=true $@.m4 > build/systemd/user/$@
@@ -22,7 +22,7 @@ hier:
 	m4 $@.m4 > build/systemd/user/$*.slice.d/simple-slices.conf
 
 %.system.slice.d.conf: hier
-	mkdir build/systemd/system/$*.slice.d
+	mkdir -p build/systemd/system/$*.slice.d
 	m4 $@.m4 > build/systemd/system/$*.slice.d/simple-slices.conf
 
 %.man.md: hier
