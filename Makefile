@@ -1,12 +1,16 @@
 main: hier slices slice_overrides targets manuals other
 
-slices: low.slice ml1.slice ml2.slice mh1.slice mh2.slice high.slice
+slices_list := $(basename $(wildcard *.slice.m4))
+slices: $(slices_list)
 
-slice_overrides: user.system.slice.d.conf system.system.slice.d.conf
+slice_overrides_list := $(basename $(wildcard *.slice.d.conf.m4))
+slice_overrides: $(slice_overrides_list)
 
-targets: simple-slices.target
+manuals_list := $(basename $(wildcard *.man.md))
+manuals: $(manuals_list)
 
-manuals: simple-slices.8.man.md ssrun.1.man.md
+targets_list := $(basename $(wildcard *.target.m4))
+targets: $(targets_list)
 
 other: hier
 	cp ssrun ssrun_sym build/bin/
@@ -17,8 +21,8 @@ hier:
 	mkdir -p build/bin build/profile build/systemd/user build/systemd/system build/snippets build/modules build/udev build/man
 
 %.target: hier
-	m4 $@.m4 > build/systemd/system/$@
-	m4 -D ss_is_user=true $@.m4 > build/systemd/user/$@
+	m4 -D ss_slice_names="$(slices_list)" $@.m4 > build/systemd/system/$@
+	m4 -D ss_slice_names="$(slices_list)" -D ss_is_user=true $@.m4 > build/systemd/user/$@
 
 %.slice: hier
 	echo "alias ${*}p='${*}p '" >> build/profile/simple-slices.sh
@@ -35,8 +39,8 @@ hier:
 	mkdir -p build/systemd/system/$*.slice.d
 	m4 $@.m4 > build/systemd/system/$*.slice.d/simple-slices.conf
 
-%.man.md: hier
-	pandoc --standalone --from=markdown --to=man $@ --output="build/man/${*}"
+%.man: hier
+	pandoc --standalone --from=markdown --to=man $@.md --output="build/man/${*}"
 
 clean:
 	rm -rf build
