@@ -1,4 +1,14 @@
-main: hier simple-slices.target low.slice ml1.slice ml2.slice mh1.slice mh2.slice high.slice user.system.slice.d.conf system.system.slice.d.conf simple-slices.8.man.md ssrun.1.man.md
+main: hier slices slice_overrides targets manuals other
+
+slices: low.slice ml1.slice ml2.slice mh1.slice mh2.slice high.slice
+
+slice_overrides: user.system.slice.d.conf system.system.slice.d.conf
+
+targets: simple-slices.target
+
+manuals: simple-slices.8.man.md ssrun.1.man.md
+
+other: hier
 	cp ssrun ssrun_sym build/bin/
 	cp modules.conf build/modules/simple-slices.conf
 	cp udev.rules build/udev/simple-slices.rules
