@@ -32,10 +32,11 @@ Package: simple-slices-bin
 Architecture: all
 Depends:
  ${misc:Depends},
- simple-slices,
  coreutils,
  util-linux,
  systemd,
+Recommends:
+ simple-slices,
 Description: Short placeholder description
  Longer placeholder description
  .
