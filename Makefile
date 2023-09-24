@@ -14,8 +14,8 @@ hier:
 	echo "alias ${*}p='${*}p '" >> build/profile/simple-slices.sh
 	ln -s ./ssrun_sym "build/bin/${*}p"
 	m4 -D ss_slice=$@ inc/service.m4 >"build/snippets/${*}.conf"
-	m4 $@.m4 > build/systemd/system/$@
-	m4 -D ss_is_user=true $@.m4 > build/systemd/user/$@
+	m4 -D ss_cmd_name="${*}p" $@.m4 > build/systemd/system/$@
+	m4 -D ss_cmd_name="${*}p" -D ss_is_user=true $@.m4 > build/systemd/user/$@
 
 %.user.slice.d.conf: hier
 	mkdir -p build/systemd/user/$*.slice.d
