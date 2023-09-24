@@ -1,6 +1,9 @@
 simple-slices (0.4.3-1) UNRELEASED; urgency=medium
 
-  * 
+  * Refactored code
+  * Added references to new documentation in slices
+  * Added real descriptions to the simple-slices-bin package
+  * Changed dependencies on simple-slices packages to Recommends with the same version
 
  -- Alex Lieflander <public@atlief.com>  Sat, 23 Sep 2023 16:29:59 -0400
 
