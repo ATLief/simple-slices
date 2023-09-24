@@ -37,7 +37,5 @@ Depends:
  systemd,
 Recommends:
  simple-slices,
-Description: Short placeholder description
- Longer placeholder description
- .
- Hello, world!
+Description: Utilities to execute commands with various priorities
+ This package is mostly a convenience wrapper for systemd-run, which executes commands similarly to how SystemD services function. The utilities provided by this package automatically supply options to systemd-run to execute commands with the same priority as the specified SystemD slice. Although it is intended to be used with the simple-slices package, any slices can be used.
