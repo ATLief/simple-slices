@@ -17,6 +17,10 @@ hier:
 	m4 $@.m4 > build/systemd/system/$@
 	m4 -D ss_is_user=true $@.m4 > build/systemd/user/$@
 
+%.user.slice.d.conf: hier
+	mkdir -p build/systemd/user/$*.slice.d
+	m4 $@.m4 > build/systemd/user/$*.slice.d/simple-slices.conf
+
 %.system.slice.d.conf: hier
 	mkdir build/systemd/system/$*.slice.d
 	m4 $@.m4 > build/systemd/system/$*.slice.d/simple-slices.conf
