@@ -1,3 +1,9 @@
+simple-slices (0.4.4-1) UNRELEASED; urgency=medium
+
+  * Refactored error-prone code
+
+ -- Alex Lieflander <public@atlief.com>  Thu, 28 Sep 2023 11:33:56 -0400
+
 simple-slices (0.4.3-1) unstable; urgency=medium
 
   * Refactored code
