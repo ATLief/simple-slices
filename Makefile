@@ -37,11 +37,11 @@ hier:
 
 %.user.slice.d.conf: hier
 	mkdir -p build/systemd/user/$(*).slice.d
-	m4 -I inc $(@).m4 > build/systemd/user/$(*).slice.d/simple-slices.conf
+	m4 -I inc -I slice_meta $(@).m4 > build/systemd/user/$(*).slice.d/simple-slices.conf
 
 %.system.slice.d.conf: hier
 	mkdir -p build/systemd/system/$(*).slice.d
-	m4 -I inc $(@).m4 > build/systemd/system/$(*).slice.d/simple-slices.conf
+	m4 -I inc -I slice_meta $(@).m4 > build/systemd/system/$(*).slice.d/simple-slices.conf
 
 %.man: hier
 	pandoc --standalone --from=markdown --to=man $(@).md --output="build/man/$(*)"
