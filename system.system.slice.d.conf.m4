@@ -1,3 +1,2 @@
-define(`ss_weight', `100')dnl
-include(`mh.m4')dnl
+include(`mh2.m4.hidden')dnl
 include(`slice.m4')dnl
