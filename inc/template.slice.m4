@@ -1,3 +1,3 @@
-include(`inc/unit.m4')
-include(`inc/slice.m4')
-include(`inc/install.m4')dnl
+include(`unit.m4')
+include(`slice.m4')
+include(`install.m4')dnl
