@@ -1,6 +1,6 @@
 main: hier slices slice_overrides targets manuals other
 
-slices_list := $(basename $(wildcard *.slice.m4))
+slices_list := $(addsuffix .slice, $(basename $(notdir $(wildcard slice_meta/*.m4))))
 slices: $(slices_list)
 
 slice_overrides_list := $(basename $(wildcard *.slice.d.conf.m4))
@@ -31,9 +31,9 @@ hier:
 
 %.slice: hier
 	ln -sf ./ssrun_sym "build/bin/$(*)p"
-	m4 -I inc -D ss_slice=$(@) inc/service.m4 >"build/snippets/$(*).conf"
-	m4 -I inc -D ss_cmd_name="$(*)p" $(@).m4 > build/systemd/system/$(@)
-	m4 -I inc -D ss_cmd_name="$(*)p" -D ss_is_user=true $(@).m4 > build/systemd/user/$(@)
+	m4 -I inc -D ss_slice=$(@) slice_meta/$(*).m4 inc/service.m4 >"build/snippets/$(*).conf"
+	m4 -I inc -D ss_cmd_name="$(*)p" slice_meta/$(*).m4 inc/template.slice.m4 > build/systemd/system/$(@)
+	m4 -I inc -D ss_cmd_name="$(*)p" -D ss_is_user=true slice_meta/$(*).m4 inc/template.slice.m4 > build/systemd/user/$(@)
 
 %.user.slice.d.conf: hier
 	mkdir -p build/systemd/user/$(*).slice.d
