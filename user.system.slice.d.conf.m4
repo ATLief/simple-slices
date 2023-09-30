@@ -1,2 +1,2 @@
-include(`ml3.m4.hidden')dnl
+include(`ml3.hidden.m4')dnl
 include(`slice.m4')dnl

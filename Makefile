@@ -15,7 +15,7 @@ targets: $(targets_list)
 EMPTY :=
 SPACE := $(EMPTY) $(EMPTY)
 COMMA := ,
-slice_cmd_names_csv := $(subst $(SPACE),$(COMMA),$(addsuffix p, $(basename $(slices_list))))
+slice_cmd_names_csv := $(subst $(SPACE),$(COMMA),$(addsuffix p, $(filter-out %.hidden,$(basename $(slices_list)))))
 other: hier
 	cp ssrun ssrun_sym build/bin/
 	cp modules.conf build/modules/simple-slices.conf
@@ -28,6 +28,9 @@ hier:
 %.target: hier
 	m4 -I inc -D ss_slice_names="$(slices_list)" $(@).m4 > build/systemd/system/$(@)
 	m4 -I inc -D ss_slice_names="$(slices_list)" -D ss_is_user=true $(@).m4 > build/systemd/user/$(@)
+
+%.hidden.slice:
+	@echo Ignoring $(@)
 
 %.slice: hier
 	ln -sf ./ssrun_sym "build/bin/$(*)p"
