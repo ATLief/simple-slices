@@ -1,12 +1,9 @@
-main: hier slices slice_overrides targets manuals other
+main: hier slices targets manuals other
 
 slices_stems_all := $(basename $(notdir $(wildcard slice_meta/*.m4)))
 slices_stems_native := $(filter-out %.hidden,$(slices_stems_all))
 slices_list_native := $(addsuffix .slice, $(slices_stems_native))
 slices: $(addsuffix .slice, $(slices_stems_all))
-
-slice_overrides_list := $(basename $(wildcard *.slice.d.conf.m4))
-slice_overrides: $(slice_overrides_list)
 
 manuals_list := $(basename $(wildcard *.man.md))
 manuals: $(manuals_list)
@@ -31,25 +28,22 @@ hier:
 	m4 -I inc -D ss_slice_names="$(slices_list_native)" $(@).m4 > build/systemd/system/$(@)
 	m4 -I inc -D ss_slice_names="$(slices_list_native)" -D ss_is_user=true $(@).m4 > build/systemd/user/$(@)
 
-%.hidden.slice:
-	@echo Ignoring $(@)
+%.hidden.slice: %.hidden.slice.d
+	@echo "skipping most processing for $(@)"
 
-%.slice: hier
+%.slice: hier %.slice.d
 	ln -sf ./ssrun_sym "build/bin/$(*)p"
 	m4 -I inc -D ss_slice=$(@) slice_meta/$(*).m4 inc/service.m4 >"build/snippets/$(*).conf"
 	m4 -I inc -D ss_cmd_name="$(*)p" slice_meta/$(*).m4 inc/template.slice.m4 > build/systemd/system/$(@)
 	m4 -I inc -D ss_cmd_name="$(*)p" -D ss_is_user=true slice_meta/$(*).m4 inc/template.slice.m4 > build/systemd/user/$(@)
 
-%.user.slice.d.conf: hier
-	mkdir -p build/systemd/user/$(*).slice.d
-	m4 -I inc -I slice_meta $(@).m4 > build/systemd/user/$(*).slice.d/simple-slices.conf
-
-%.system.slice.d.conf: hier
-	mkdir -p build/systemd/system/$(*).slice.d
-	m4 -I inc -I slice_meta $(@).m4 > build/systemd/system/$(*).slice.d/simple-slices.conf
+%.slice.d: hier
+	@./alias2override.sh "slice_meta/$(*).m4"
 
 %.man: hier
 	pandoc --standalone --from=markdown --to=man $(@).md --output="build/man/$(*)"
 
 clean:
 	rm -rf build
+
+%:
