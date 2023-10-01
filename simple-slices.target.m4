@@ -1,6 +1,6 @@
 [Unit]
 Description=A small set of systemd slices with various priorities
-Documentation=man:systemd.resource-control
+Documentation=man:simple-slices man:systemd.resource-control
 Wants=ss_slice_names
 Before=slices.target
 
