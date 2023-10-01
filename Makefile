@@ -1,7 +1,9 @@
 main: hier slices slice_overrides targets manuals other
 
-slices_list := $(addsuffix .slice, $(basename $(notdir $(wildcard slice_meta/*.m4))))
-slices: $(slices_list)
+slices_stems_all := $(basename $(notdir $(wildcard slice_meta/*.m4)))
+slices_stems_native := $(filter-out %.hidden,$(slices_stems_all))
+slices_list_native := $(addsuffix .slice, $(slices_stems_native))
+slices: $(addsuffix .slice, $(slices_stems_all))
 
 slice_overrides_list := $(basename $(wildcard *.slice.d.conf.m4))
 slice_overrides: $(slice_overrides_list)
@@ -15,7 +17,7 @@ targets: $(targets_list)
 EMPTY :=
 SPACE := $(EMPTY) $(EMPTY)
 COMMA := ,
-slice_cmd_names_csv := $(subst $(SPACE),$(COMMA),$(addsuffix p, $(filter-out %.hidden,$(basename $(slices_list)))))
+slice_cmd_names_csv := $(subst $(SPACE),$(COMMA),$(addsuffix p, $(slices_stems_native)))
 other: hier
 	cp ssrun ssrun_sym build/bin/
 	cp modules.conf build/modules/simple-slices.conf
@@ -26,8 +28,8 @@ hier:
 	mkdir -p build/bin build/profile build/systemd/user build/systemd/system build/snippets build/modules build/udev build/man
 
 %.target: hier
-	m4 -I inc -D ss_slice_names="$(slices_list)" $(@).m4 > build/systemd/system/$(@)
-	m4 -I inc -D ss_slice_names="$(slices_list)" -D ss_is_user=true $(@).m4 > build/systemd/user/$(@)
+	m4 -I inc -D ss_slice_names="$(slices_list_native)" $(@).m4 > build/systemd/system/$(@)
+	m4 -I inc -D ss_slice_names="$(slices_list_native)" -D ss_is_user=true $(@).m4 > build/systemd/user/$(@)
 
 %.hidden.slice:
 	@echo Ignoring $(@)
