@@ -41,7 +41,7 @@ hier:
 	@./alias2override.sh "slice_meta/$(*).m4"
 
 %.man: hier
-	pandoc --standalone --from=markdown --to=man $(@).md --output="build/man/$(*)"
+	cat $(@).md inc/man.md | pandoc --standalone --from=markdown --to=man --output="build/man/$(*)"
 
 clean:
 	rm -rf build
