@@ -1,6 +1,6 @@
-% simple-slices(SECTION) | User Commands
+% simple-slices(7) | Miscellaneous
 %
-% "September 21 2023"
+% "October 2 2023"
 
 # NAME
 

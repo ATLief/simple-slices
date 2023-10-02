@@ -1,6 +1,6 @@
 % ssrun(1) | User Commands
 %
-% "September 21 2023"
+% "October 2 2023"
 
 # NAME
 
