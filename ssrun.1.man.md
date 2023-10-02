@@ -70,4 +70,4 @@ The upstream BTS can be found at http://bugzilla.foo.tld.
 
 # SEE ALSO
 
-**simple-slices**(8), **systemd-run**(1), **systemd.scope**(1)
+**simple-slices**(7), **systemd-run**(1), **systemd.scope**(1)
