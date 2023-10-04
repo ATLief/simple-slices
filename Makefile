@@ -29,7 +29,7 @@ hier:
 	m4 -I inc -D ss_slice_names="$(slices_list_native)" -D ss_is_user=true $(@).m4 > build/systemd/user/$(@)
 
 %.hidden.slice: %.hidden.slice.d
-	@echo "skipping most processing for $(@)"
+	@echo "skipped most processing for $(@)"
 
 %.slice: hier %.slice.d
 	ln -sf ./ssrun_sym "build/bin/$(*)p"
