@@ -4,7 +4,7 @@
 
 # NAME
 
-ssrun - program to do something
+ssrun - utility to execute commands with various priorities
 
 # SYNOPSIS
 
@@ -64,9 +64,7 @@ Bad configuration file. Exiting.
 
 # BUGS
 
-The program is currently limited to only work with the foobar library.
-
-The upstream BTS can be found at http://bugzilla.foo.tld.
+Please report bugs to https://github.com/ATLief/simple-slices/issues.
 
 # SEE ALSO
 

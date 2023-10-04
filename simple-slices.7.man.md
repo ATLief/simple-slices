@@ -4,7 +4,7 @@
 
 # NAME
 
-simple-slices - program to do something
+simple-slices - small collection of SystemD slices with various priorities
 
 # SYNOPSIS
 
@@ -28,9 +28,9 @@ ${HOME}/.foo.conf
 
 # BUGS
 
-The program is currently limited to only work with the foobar library.
+A restart may be required in order to start using all features. Individual (non-root) users may need to manually enable simple-slices.target.
 
-The upstream BTS can be found at http://bugzilla.foo.tld.
+Please report bugs to https://github.com/ATLief/simple-slices/issues.
 
 # SEE ALSO
 
