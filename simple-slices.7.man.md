@@ -1,10 +1,10 @@
 % simple-slices(7) | Miscellaneous
 %
-% "October 2 2023"
+% "October 6 2023"
 
 # NAME
 
-simple-slices - small collection of SystemD slices with various priorities
+simple-slices - priority-based resource division via simple categories
 
 # SYNOPSIS
 
