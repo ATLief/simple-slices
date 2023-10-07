@@ -12,11 +12,9 @@ SystemD services can be assigned to a slice by adding a drop-in file to that ser
 
 Individual commands can also be run within a slice, most conveniently with the **ssrun(1)** command. It is strongly recommended to execute scripts within slices by creating a SystemD service file that executes the script and has the Slice directive, rather than invoking **systemd-run(1)** or **ssrun(1)** within the script.
 
-# DESCRIPTION
+# TECHNICAL INFORMATION
 
-This manual page documents briefly the intended usage of the Simple Slices package.
-
-**simple-slices** is a program that...
+SystemD includes a feature called "slices", which combines services into groups that are preferentially given access to computing resources based on their assigned priority (similar to "nice" and "ionice"); if the system isn't resource-constrained, these priorities have no effect.
 
 # FILES
 
