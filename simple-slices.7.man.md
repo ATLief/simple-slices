@@ -6,9 +6,11 @@
 
 simple-slices - priority-based resource division via simple categories
 
-# SYNOPSIS
+# USAGE
 
-**ignore-me** [{**-h** | *\-\-help**} | {**-v** | **\-\-version**}]
+SystemD services can be assigned to a slice by adding a drop-in file to that service which specifies the Slice directive. Such files should ideally be placed in /etc/systemd/system/NAME.service.d/SLICE.conf for system services and /etc/systemd/user/NAME.service.d/SLICE.conf for user services, where "NAME" is the name of the service and "SLICE" is the desired slice.
+
+Individual commands can also be run within a slice, most conveniently with the **ssrun(1)** command. It is strongly recommended to execute scripts within slices by creating a SystemD service file that executes the script and has the Slice directive, rather than invoking **systemd-run(1)** or **ssrun(1)** within the script.
 
 # DESCRIPTION
 
