@@ -28,9 +28,7 @@ If **ssrun** is executed as a user with UID 0 (usually the root user), **systemd
 
 (Symbolic links) of **ssrun_sym** internally call **ssrun** with the base of their name automatically provided as the first positional argument. All other arguments are appended to that call. Thus, these "commands" pass all specified arguments to **systemd-run**, and the desired slice is specified by using the respective symlink.
 
-**ssrun** automatically appends **\-\-system** to the **systemd-run** options if the effective UID of the invoking user is 0 (usually the root user). Otherwise it appends the **\-\-user** option. This behavior can be overridden by additionally supplying one of these options before the desired command.
-
-When run in user mode...
+**ssrun** automatically appends **\-\-system** to the **systemd-run** options if the effective UID of the invoking user is 0 (usually the root user). Otherwise it appends the **\-\-user** option. This behavior can be overridden by additionally supplying one of these options before the desired command. When run in user mode, slices are created within your user session, and so only affect their priority relative to the other processes within your session.
 
 # FILES
 
