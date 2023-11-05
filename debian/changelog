@@ -1,4 +1,4 @@
-simple-slices (0.5.0-1) UNRELEASED; urgency=medium
+simple-slices (0.5.0-1) unstable; urgency=medium
 
   * Added Slice overrides for native user slices
   * Simplified package descriptions
@@ -9,7 +9,7 @@ simple-slices (0.5.0-1) UNRELEASED; urgency=medium
     * Updated copyright year
   * Refactored code
 
- -- Alex Lieflander <public@atlief.com>  Thu, 28 Sep 2023 11:52:41 -0400
+ -- Alex Lieflander <public@atlief.com>  Sun, 05 Nov 2023 12:05:57 -0500
 
 simple-slices (0.4.4-1) unstable; urgency=medium
 
