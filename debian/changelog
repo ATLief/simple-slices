@@ -1,6 +1,13 @@
 simple-slices (0.5.0-1) UNRELEASED; urgency=medium
 
-  * TBA
+  * Added Slice overrides for native user slices
+  * Simplified package descriptions
+    * Summarized more complicated descriptions to man page
+  * Added more references to documentation
+  * Changed copyright notice in man pages
+    * Removed the "or later version of GPL" clause (still GPLv2)
+    * Updated copyright year
+  * Refactored code
 
  -- Alex Lieflander <public@atlief.com>  Thu, 28 Sep 2023 11:52:41 -0400
 
