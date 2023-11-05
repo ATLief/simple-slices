@@ -1,12 +1,12 @@
-# simple-slices
-A small collection of SystemD slices with various priorities
+# Simple-Slices
+Priority-based resource division via simple categories
 
 **Note: This project is not ready for production yet! File names and features may be renamed or removed without warning!**
 
 **Note: Until further notice, it is strongly recommended to purge older versions before installing newer versions.**
 
-SystemD includes a feature called "slices", which combines services into groups that are preferentially given access to computing resources based on their assigned priority (similar to "nice" and "ionice"); if the system isn't resource-constrained, these priorities have no effect. Despite their usefulness, few people seem use them—likely due to their complexity.
+## Basic Explanation
 
- This package contains 8 slices with hand-picked priority values that seem to work well for most applications. Each slice defines a priority for CPU utilization, IO utilization, and memory usage; future versions may also support priority for network utilization and core scheduling on hybrid CPUs. This allows the user to quickly and easily choose which commands and services should be given priority when the system is under load. See the manual for details, but know that it's quite easy.
+This package defines 8 categories ("slices") which each have a priority level that determines which categories are given access to system resources first. The categories and their priorities were chosen based on what seemed to work well for most systems and users, but these can be customized if desired. Because it is based on priority, the performance of a category is only limited when the system must already limit performance; this package allows you to choose which services are limited first, with the end result being that important services perform better.
 
-For example, a desktop user may want to give higher priority to their desktop environment and user-facing applications, and lower priority to the background updates of mail clients, file syncing clients, and software update checking. A server administrator may want to give higher priority to SSH servers and firewalls, and lower priority to offsite replication.
+Which services are "important" is for the user to decide, whether that be (for example) faster games or faster web hosting. By assigning commands and services to a category, they are automatically given the corresponding priority level. Instructions for usage and more technical information can be viewed by running "man simple-slices", but know that this package has been specifically designed to be simple and easy to use.
