@@ -1,3 +1,9 @@
+simple-slices (0.5.1-1) UNRELEASED; urgency=medium
+
+  * TBA
+
+ -- Alex Lieflander <public@atlief.com>  Thu, 09 Nov 2023 00:27:47 -0500
+
 simple-slices (0.5.0-1) unstable; urgency=medium
 
   * Added Slice overrides for native user slices
