@@ -1,6 +1,6 @@
 simple-slices (0.5.1-1) UNRELEASED; urgency=medium
 
-  * TBA
+  * Added missing override for virtual machines
 
  -- Alex Lieflander <public@atlief.com>  Thu, 09 Nov 2023 00:27:47 -0500
 
