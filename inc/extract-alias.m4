@@ -1,1 +1,2 @@
-ifdef(`ss_is_user', `ifdef(`ss_alias_user', ss_alias_user)', `ifdef(`ss_system_alias', ss_system_alias)')
+include(`resolve-alias.m4')dnl
+ifdef(`ss_alias_eff', ss_alias_eff)
