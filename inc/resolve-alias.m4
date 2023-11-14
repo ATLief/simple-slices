@@ -1,1 +1,1 @@
-ifdef(`ss_is_user', `ifdef(`ss_alias_user', `define(`ss_alias_eff', ss_alias_user)')', `ifdef(`ss_alias_system', `define(`ss_alias_eff', ss_alias_system)')')dnl
+ifdef(`ss_preset', `ifdef(`ss_alias_'ss_preset, `define(`ss_alias_eff', `ss_alias_'ss_preset)')')dnl

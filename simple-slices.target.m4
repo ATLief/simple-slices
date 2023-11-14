@@ -5,4 +5,4 @@ Wants=ss_slice_names
 Before=slices.target
 
 [Install]
-WantedBy=ifdef(`ss_is_user', `basic.target', `slices.target')
+WantedBy=ifelse(ss_preset, `user', `basic.target', `slices.target')

@@ -1,5 +1,6 @@
 main: hier slices targets manuals other
 
+default_preset := system
 slices_stems_all := $(basename $(notdir $(wildcard slice_meta/*.m4)))
 slices_stems_native := $(filter-out %.hidden,$(slices_stems_all))
 slices_list_native := $(addsuffix .slice, $(slices_stems_native))
@@ -7,8 +8,8 @@ EMPTY :=
 SPACE := $(EMPTY) $(EMPTY)
 COMMA := ,
 slice_cmd_names_csv := $(subst $(SPACE),$(COMMA),$(addsuffix p, $(slices_stems_native)))
-m4 := m4 -I inc -D ss_slice_names="$(slices_list_native)" -D ss_cmd_names="$(slice_cmd_names_csv)"
-m4_user := $(m4) -D ss_is_user=true
+m4 := m4 -I inc -D ss_slice_names="$(slices_list_native)" -D ss_cmd_names="$(slice_cmd_names_csv)" -D "ss_preset=$(default_preset)"
+m4_user := $(m4) -D ss_preset=user
 
 slices: $(addsuffix .slice, $(slices_stems_all))
 
@@ -25,10 +26,11 @@ other: hier
 	$(m4) -I /usr/share/doc/m4/examples profile.sh.m4 > build/profile/simple-slices.sh
 
 hier:
-	mkdir -p build/bin build/profile build/systemd/user build/systemd/system build/snippets build/modules build/udev build/man
+	mkdir -p build/bin build/profile build/systemd/user build/systemd/$(default_preset) build/snippets build/modules build/udev build/man
+	ln -s ./$(default_preset) build/systemd/default
 
 %.target: hier
-	$(m4) $(@).m4 > build/systemd/system/$(@)
+	$(m4) $(@).m4 > build/systemd/default/$(@)
 	$(m4_user) $(@).m4 > build/systemd/user/$(@)
 
 %.hidden.slice: %.hidden.slice.d
@@ -37,7 +39,7 @@ hier:
 %.slice: hier %.slice.d
 	ln -sf ./ssrun_sym "build/bin/$(*)p"
 	$(m4) -D ss_slice=$(@) slice_meta/$(*).m4 inc/service.m4 >"build/snippets/$(*).conf"
-	$(m4) -D ss_cmd_name="$(*)p" slice_meta/$(*).m4 inc/template.slice.m4 > build/systemd/system/$(@)
+	$(m4) -D ss_cmd_name="$(*)p" slice_meta/$(*).m4 inc/template.slice.m4 > build/systemd/default/$(@)
 	$(m4_user) -D ss_cmd_name="$(*)p" slice_meta/$(*).m4 inc/template.slice.m4 > build/systemd/user/$(@)
 
 %.slice.d: hier
