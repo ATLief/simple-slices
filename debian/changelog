@@ -1,3 +1,9 @@
+simple-slices (0.5.2-1) UNRELEASED; urgency=medium
+
+  * Refactored code
+
+ -- Alex Lieflander <public@atlief.com>  Tue, 14 Nov 2023 23:03:09 -0500
+
 simple-slices (0.5.1-1) unstable; urgency=medium
 
   * Added missing override for virtual machines
