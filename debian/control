@@ -21,6 +21,8 @@ Depends:
  udev,
 Recommends:
  simple-slices-bin (= ${source:Version}),
+Suggests:
+ simple-slices-preset-desktop | simple-slices-preset-server,
 Description: Priority-based resource division via simple categories
  This package defines 7 categories ("slices") which each have a priority level that determines which categories are given access to system resources first. The categories and their priorities were chosen based on what seemed to work well for most systems and users, but these can be customized if desired. Because it is based on priority, the performance of a category is only limited when the system must already limit performance; this package allows you to choose which services are limited first, with the end result being that important services performs better.
  .
@@ -37,3 +39,25 @@ Recommends:
  simple-slices (= ${source:Version}),
 Description: Utilities to execute commands with various priorities
  This package is mostly a convenience wrapper for systemd-run, which executes commands similarly to how SystemD services function. The utilities provided by this package automatically supply options to systemd-run to execute commands within the specified SystemD slice. Although it is intended to be used with the simple-slices package, any slices could be used.
+
+Package: simple-slices-preset-desktop
+Architecture: all
+Depends:
+ ${misc:Depends},
+ systemd,
+ simple-slices (= ${source:Version}),
+Conflicts:
+ simple-slices-preset-server,
+Description: Preconfigured version of simple-slices for desktops
+ See the simple-slices package for a full description of its functionality. This package slightly changes the default priorities to be more optimized for desktop/graphical workloads.
+
+Package: simple-slices-preset-server
+Architecture: all
+Depends:
+ ${misc:Depends},
+ systemd,
+ simple-slices (= ${source:Version}),
+Conflicts:
+ simple-slices-preset-desktop,
+Description: Preconfigured version of simple-slices for servers
+ See the simple-slices package for a full description of its functionality. This package slightly changes the default priorities to be more optimized for server workloads.
