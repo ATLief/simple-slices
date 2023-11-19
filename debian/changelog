@@ -1,3 +1,9 @@
+simple-slices (0.5.3-1) unstable; urgency=high
+
+  * Fix broken package building
+
+ -- Alex Lieflander <public@atlief.com>  Sun, 19 Nov 2023 17:56:46 -0500
+
 simple-slices (0.5.2-1) unstable; urgency=medium
 
   * Refactored code

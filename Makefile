@@ -1,6 +1,6 @@
 main: hier slices targets manuals other
 
-default_preset := system
+default_preset := server
 slices_stems_all := $(basename $(notdir $(wildcard slice_meta/*.m4)))
 slices_stems_native := $(filter-out %.hidden,$(slices_stems_all))
 slices_list_native := $(addsuffix .slice, $(slices_stems_native))
