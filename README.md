@@ -1,7 +1,7 @@
 # Simple-Slices
 Priority-based resource division via simple categories
 
-**Note: This project is not ready for production yet! File names and features may be renamed or removed without warning!**
+**Warning: This branch is no longer under active developement! Please switch to the default branch.**
 
 **Note: Until further notice, it is strongly recommended to purge older versions before installing newer versions.**
 
