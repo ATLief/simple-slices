@@ -1,3 +1,9 @@
+simple-slices (0.6.0-1) UNRELEASED; urgency=medium
+
+  * TBA
+
+ -- Alex Lieflander <public@atlief.com>  Sun, 19 Nov 2023 18:02:01 -0500
+
 simple-slices (0.5.3-1) unstable; urgency=high
 
   * Fix broken package building
