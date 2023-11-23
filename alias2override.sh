@@ -1,6 +1,6 @@
 #!/bin/sh
 
-prefix_num=10
+prefix_num=20
 for preset in server user neutral desktop; do
 	preset_def="ss_preset=${preset}"
 	for slice_alias in $(m4 -I inc -D "$preset_def" "$@" inc/extract-alias.m4); do
