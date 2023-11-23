@@ -1,8 +1,10 @@
 [Slice]
-#CPUAccounting=yes
-#IOAccounting=yes
-#MemoryAccounting=yes
-#TaskAccounting=yes
+CPUAccounting=yes
+IOAccounting=yes
+MemoryAccounting=yes
+TaskAccounting=yes
+
+Delegate=yes
 
 CPUWeight=ss_weight
 IOWeight=ss_weight
