@@ -1,6 +1,6 @@
 % simple-slices(7) | Miscellaneous
 %
-% "October 6 2023"
+% "November 23 2023"
 
 # NAME
 
@@ -12,19 +12,14 @@ SystemD services can be assigned to a slice by adding a drop-in file to that ser
 
 Individual commands can also be run within a slice, most conveniently with the **ssrun(1)** command. It is strongly recommended to execute scripts within slices by creating a SystemD service file that executes the script and has the Slice directive, rather than invoking **systemd-run(1)** or **ssrun(1)** within the script.
 
+# FILES
+
+/usr/share/simple-slices/snippets/
+:   Example drop-in files for each category assignment.
+
 # TECHNICAL INFORMATION
 
 SystemD includes a feature called "slices", which combines services into groups that are preferentially given access to computing resources based on their assigned priority (similar to "nice" and "ionice"); if the system isn't resource-constrained, these priorities have no effect. Each slice defines a priority for CPU utilization, IO utilization, and memory usage; future versions may also support priority for network utilization and core scheduling on hybrid CPUs.
-
-# FILES
-
-/etc/foo.conf
-:   The system-wide configuration file to control the behaviour of
-    simple-slices. See **foo.conf**(5) for further details.
-
-${HOME}/.foo.conf
-:   The per-user configuration file to control the behaviour of
-    simple-slices. See **foo.conf**(5) for further details.
 
 # BUGS
 
