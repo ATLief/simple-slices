@@ -24,9 +24,9 @@ Recommends:
 Suggests:
  simple-slices-preset-desktop | simple-slices-preset-server,
 Description: Priority-based resource division via simple categories
- This package defines 7 categories ("slices") which each have a priority level that determines which categories are given access to system resources first. The categories and their priorities were chosen based on what seemed to work well for most systems and users, but these can be customized if desired. Because it is based on priority, the performance of a category is only limited when the system must already limit performance; this package allows you to choose which services are limited first, with the end result being that important services performs better.
+ This package defines 7 categories ("slices") which each have a priority level that determines which categories are given access to system resources first. The categories and their priorities were chosen based on what seemed to work well for most systems and users, but these can be customized if desired. Because it is based on priority, the performance of a category is only limited when the system must already limit performance; this package allows you to choose which programs are limited first, with the end result being that important programs perform better.
  .
- Which services are "important" is for the user to decide, whether that be faster games or faster web hosting. By assigning commands and services to a category, they are automatically given the corresponding priority level. Instructions for usage and more technical information can be viewed by running "man simple-slices", but know that this package has been specifically designed to be simple and easy to use.
+ Which programs are "important" is for the user to decide, whether that be faster games or faster web hosting. By assigning commands and programs to a category, they are automatically given the corresponding priority level. Instructions for usage and more technical information can be viewed by running "man simple-slices", but know that this package has been specifically designed to be simple and easy to use.
  .
  New users should install this package first, because it mostly matches how the system behaves before installing this package; resource distribution will only change once you start assigning things to categories.
 
