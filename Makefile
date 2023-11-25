@@ -23,11 +23,13 @@ other: hier
 	cp ssrun ssrun_sym build/bin/
 	cp modules.conf build/modules/simple-slices.conf
 	cp udev.rules build/udev/simple-slices.rules
+	cp user@.service.d build/systemd/default/user@.service.d/simple-slices.conf
 	$(m4) -I /usr/share/doc/m4/examples profile.sh.m4 > build/profile/simple-slices.sh
 
 hier:
 	mkdir -p build/bin build/profile build/systemd/user build/systemd/$(default_preset) build/snippets build/modules build/udev build/man
 	ln -s ./$(default_preset) build/systemd/default
+	mkdir -p build/systemd/default/user@.service.d
 
 %.target: hier
 	$(m4) $(@).m4 > build/systemd/default/$(@)
