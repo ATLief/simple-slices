@@ -2,7 +2,7 @@
 CPUAccounting=yes
 IOAccounting=yes
 MemoryAccounting=yes
-TaskAccounting=yes
+TasksAccounting=yes
 
 CPUWeight=ss_weight
 IOWeight=ss_weight
