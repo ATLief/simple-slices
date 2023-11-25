@@ -1,6 +1,6 @@
 % simple-slices(7) | Miscellaneous
 %
-% "November 23 2023"
+% "November 25 2023"
 
 # NAME
 
@@ -20,6 +20,8 @@ Individual commands can also be run within a category, most conveniently with th
 :   Example drop-in files for each category assignment.
 
 # TECHNICAL INFORMATION
+
+It isn't necessary to read or understand this section in order to use this package. You should read this if you're curious how this package works, or want to make modifications beyond just putting things into categories.
 
 SystemD includes a feature called "slices", which combines "services" and "scopes" into groups that are preferentially given access to computing resources based on their assigned priority (similar to "nice" and "ionice"); if the system isn't resource-constrained, these priorities have no effect. Each slice defines a priority for CPU processing, disk bandwidth, and RAM storage. Future versions may also support priorities for network bandwidth and core types for hybrid CPUs.
 
