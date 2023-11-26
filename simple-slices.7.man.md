@@ -12,7 +12,7 @@ The priority of individual graphical applications can be changed, but this proce
 
 SystemD services can be assigned to a category by adding a drop-in file to that service which specifies the Slice directive. Such files should ideally be placed in /etc/systemd/system/NAME.service.d/SLICE.conf for system services and /etc/systemd/user/NAME.service.d/SLICE.conf for user services, where "NAME" is the name of the service and "SLICE" is the desired category.
 
-Individual commands can also be run within a category, most conveniently with the **ssrun(1)** command. It is strongly recommended to execute scripts within categories by creating a SystemD service file that executes the script and has the Slice directive, rather than invoking **systemd-run(1)** or **ssrun(1)** within the script; this may become unsupported in the future.
+Individual commands can also be run within a category, most conveniently with the **ssrun**(1) command. It is strongly recommended to execute scripts within categories by creating a SystemD service file that executes the script and has the Slice directive, rather than invoking **systemd-run**(1) or **ssrun**(1) within the script; this may become unsupported in the future.
 
 # FILES
 
