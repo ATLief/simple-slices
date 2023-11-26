@@ -25,7 +25,7 @@ other: hier
 
 hier:
 	mkdir -p build/bin build/profile build/systemd/user build/systemd/$(default_preset) build/snippets build/modules build/udev build/man
-	ln -s ./$(default_preset) build/systemd/default
+	ln -sf ./$(default_preset) build/systemd/default
 	mkdir -p build/systemd/default/user@.service.d
 
 %.target: hier
