@@ -4,11 +4,8 @@ default_preset := neutral
 slices_stems_all := $(basename $(notdir $(wildcard slice_meta/*.m4)))
 slices_stems_native := $(filter-out %.hidden,$(slices_stems_all))
 slices_list_native := $(addsuffix .slice, $(slices_stems_native))
-EMPTY :=
-SPACE := $(EMPTY) $(EMPTY)
-COMMA := ,
-slice_cmd_names_csv := $(subst $(SPACE),$(COMMA),$(addsuffix p, $(slices_stems_native)))
-m4 := m4 -I inc -D ss_slice_names="$(slices_list_native)" -D ss_cmd_names="$(slice_cmd_names_csv)" -D "ss_preset=$(default_preset)"
+slice_cmd_names := $(addsuffix p, $(slices_stems_native))
+m4 := m4 -I inc -D ss_slice_names="$(slices_list_native)" -D ss_cmd_names="$(slice_cmd_names)" -D "ss_preset=$(default_preset)"
 m4_user := $(m4) -D ss_preset=user
 
 slices: $(addsuffix .slice, $(slices_stems_all))
