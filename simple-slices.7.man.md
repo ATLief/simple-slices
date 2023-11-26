@@ -34,4 +34,4 @@ Please report bugs to https://github.com/ATLief/simple-slices/issues.
 
 # SEE ALSO
 
-**ssrun**(1), **ssrun_sym**(1)
+**ssrun**(1), **systemd.slice**(5), **systemd.resource-control**(5), **systemd-run**(1)
