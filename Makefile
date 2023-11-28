@@ -20,7 +20,7 @@ other: hier
 	cp ssrun ssrun_sym build/bin/
 	cp modules.conf build/modules/simple-slices.conf
 	cp udev.rules build/udev/simple-slices.rules
-	cp user@.service.d build/systemd/default/user@.service.d/simple-slices.conf
+	cp user@.service.d build/systemd/default/user@.service.d/20-simple-slices.conf
 	$(m4) -I /usr/share/doc/m4/examples profile.sh.m4 > build/profile/simple-slices.sh
 
 hier:
