@@ -5,6 +5,7 @@ simple-slices (0.6.0-1) UNRELEASED; urgency=medium
     * The new default category is called "med"
     * Native slices are now equivalent to a category
   * Enabled disk priority control for regular users
+  * Enabled max process limits for all categories
   * Added support for multiple variations ("presets")
     * The default preset more closely matches unmodified systems
     * Different presets can be put into separate packages

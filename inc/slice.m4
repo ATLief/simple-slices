@@ -12,4 +12,4 @@ changecom()dnl
 MemoryHigh=ss_util_high%
 
 MemoryMax=ss_util_max%
-#TasksMax=ss_util_max%
+TasksMax=ss_util_max%
