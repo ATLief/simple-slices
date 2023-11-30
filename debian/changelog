@@ -1,6 +1,16 @@
 simple-slices (0.6.0-1) UNRELEASED; urgency=medium
 
-  * TBA
+  * Removed a category and adjusted remaining categories
+    * "mh1" is now higher priority than the default category
+    * The new default category is called "med"
+    * Native slices are now equivalent to a category
+  * Enabled disk priority control for regular users
+  * Added support for multiple variations ("presets")
+    * The default preset more closely matches unmodified systems
+    * Different presets can be put into separate packages
+      * The additional presets are currently "desktop" and "server"
+  * Improved documentation and package metadata
+  * Refactored code
 
  -- Alex Lieflander <public@atlief.com>  Sun, 19 Nov 2023 18:02:01 -0500
 
