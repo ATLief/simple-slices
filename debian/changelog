@@ -1,4 +1,4 @@
-simple-slices (0.6.0-1) UNRELEASED; urgency=medium
+simple-slices (0.6.0-1) unstable; urgency=medium
 
   * Removed a category and adjusted remaining categories
     * "mh1" is now higher priority than the default category
@@ -13,7 +13,7 @@ simple-slices (0.6.0-1) UNRELEASED; urgency=medium
   * Improved documentation and package metadata
   * Refactored code
 
- -- Alex Lieflander <public@atlief.com>  Sun, 19 Nov 2023 18:02:01 -0500
+ -- Alex Lieflander <public@atlief.com>  Mon, 04 Dec 2023 19:50:01 -0500
 
 simple-slices (0.5.3-1) unstable; urgency=high
 
