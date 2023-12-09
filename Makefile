@@ -37,7 +37,7 @@ hier:
 
 %.slice: hier %.slice.d
 	ln -sf ./ssrun_sym "build/bin/$(*)p"
-	$(m4) -D ss_slice=$(@) slice_meta/$(*).m4 inc/service.m4 >"build/snippets/$(*).conf"
+	$(m4) -D ss_slice=$(@) inc/service.m4 >"build/snippets/$(*).conf"
 	$(m4) -D ss_cmd_name="$(*)p" slice_meta/$(*).m4 inc/template.slice.m4 > build/systemd/default/$(@)
 	$(m4_user) -D ss_cmd_name="$(*)p" slice_meta/$(*).m4 inc/template.slice.m4 > build/systemd/user/$(@)
 
