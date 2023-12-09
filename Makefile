@@ -13,14 +13,14 @@ slices: $(addsuffix .slice, $(slices_stems_all))
 manuals_list := $(basename $(wildcard *.man.md))
 manuals: $(manuals_list)
 
-targets_list := $(basename $(wildcard *.target.m4))
+targets_list := $(basename $(notdir $(wildcard other_units/*.target.m4)))
 targets: $(targets_list)
 
 other: hier
 	cp ssrun ssrun_sym build/bin/
 	cp modules.conf build/modules/simple-slices.conf
 	cp udev.rules build/udev/simple-slices.rules
-	$(m4) user@.service.d.m4 >build/systemd/default/user@.service.d/20-simple-slices.conf
+	$(m4) other_units/user@.service.d.m4 >build/systemd/default/user@.service.d/20-simple-slices.conf
 	$(m4) -I /usr/share/doc/m4/examples profile.sh.m4 > build/profile/simple-slices.sh
 
 hier:
@@ -29,8 +29,8 @@ hier:
 	mkdir -p build/systemd/default/user@.service.d
 
 %.target: hier
-	$(m4) $(@).m4 > build/systemd/default/$(@)
-	$(m4_user) $(@).m4 > build/systemd/user/$(@)
+	$(m4) other_units/$(@).m4 > build/systemd/default/$(@)
+	$(m4_user) other_units/$(@).m4 > build/systemd/user/$(@)
 
 %.hidden.slice: %.hidden.slice.d
 	@echo "skipped most processing for $(@)"
