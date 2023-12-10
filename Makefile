@@ -1,5 +1,7 @@
 main: hier slices targets manuals other
 
+debug: clean main
+
 default_preset := neutral
 slices_stems_all := $(basename $(notdir $(wildcard slice_meta/*.m4)))
 slices_stems_native := $(filter-out %.hidden,$(slices_stems_all))
