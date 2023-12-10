@@ -1,6 +1,6 @@
 simple-slices (0.6.1-1) UNRELEASED; urgency=medium
 
-  * TBA
+  * Refactored code (no change to built data files)
 
  -- Alex Lieflander <public@atlief.com>  Sun, 10 Dec 2023 15:38:39 -0500
 
