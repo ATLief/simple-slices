@@ -5,7 +5,7 @@ slices_stems_all := $(basename $(notdir $(wildcard slice_meta/*.m4)))
 slices_stems_native := $(filter-out %.hidden,$(slices_stems_all))
 slices_list_native := $(addsuffix .slice, $(slices_stems_native))
 slice_cmd_names := $(addsuffix p, $(slices_stems_native))
-m4 := m4 -I inc -D ss_slice_names="$(slices_list_native)" -D ss_cmd_names="$(slice_cmd_names)"
+m4 := m4 -I inc -D ss_slice_names="$(slices_list_native)"
 m4_dp := $(m4) -D "ss_preset=$(default_preset)"
 m4_user := $(m4) -D ss_preset=user
 
@@ -22,7 +22,7 @@ other: hier
 	cp modules.conf build/modules/simple-slices.conf
 	cp udev.rules build/udev/simple-slices.rules
 	$(m4_dp) other_units/user@.service.d.m4 >build/systemd/default/user@.service.d/20-simple-slices.conf
-	$(m4) -I /usr/share/doc/m4/examples profile.sh.m4 > build/profile/simple-slices.sh
+	$(m4) -I /usr/share/doc/m4/examples -D ss_cmd_names="$(slice_cmd_names)" profile.sh.m4 >build/profile/simple-slices.sh
 
 hier:
 	mkdir -p build/bin build/profile build/systemd/user build/systemd/$(default_preset) build/snippets build/modules build/udev build/man
