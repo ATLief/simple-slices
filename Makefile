@@ -1,4 +1,4 @@
-main: hier slices targets manuals other
+main: hier slices other_units manuals other
 
 debug: clean main
 
@@ -16,8 +16,8 @@ slices: $(addsuffix .slice, $(slices_stems_all))
 manuals_list := $(basename $(wildcard *.man.md))
 manuals: $(manuals_list)
 
-targets_list := $(basename $(notdir $(wildcard other_units/*.target.m4)))
-targets: $(targets_list)
+other_units_list := $(basename $(wildcard other_units/*.m4))
+other_units: $(other_units_list)
 
 other: hier
 	cp ssrun ssrun_sym build/bin/
@@ -31,9 +31,12 @@ hier:
 	ln -sf ./$(default_preset) build/systemd/default
 	mkdir -p build/systemd/default/user@.service.d
 
-%.target: hier
-	$(m4_dp) other_units/$(@).m4 > build/systemd/default/$(@)
-	$(m4_user) other_units/$(@).m4 > build/systemd/user/$(@)
+other_units/%.d:
+	@echo "skipped automatic processing for $(@)"
+
+other_units/%: hier
+	$(m4_dp) $(@).m4 > build/systemd/default/$(*)
+	$(m4_user) $(@).m4 > build/systemd/user/$(*)
 
 %.hidden.slice: %.hidden.slice.d
 	@echo "skipped most processing for $(@)"
