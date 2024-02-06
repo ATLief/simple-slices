@@ -2,11 +2,10 @@ main: hier slices other_units manuals other
 
 debug: clean main
 
-default_preset := neutral
 slices_list := $(addsuffix .slice, $(basename $(notdir $(wildcard slice_meta/*.m4))))
 
 m4_args := -I inc -D ss_slice_names="$(slices_list)"
-m4_dp := m4 $(m4_args) -D "ss_preset=$(default_preset)"
+m4_neutral := m4 $(m4_args) -D ss_preset=neutral
 m4_user := m4 $(m4_args) -D ss_preset=user
 
 slices: $(slices_list)
@@ -21,26 +20,25 @@ other: hier
 	cp ssrun ssrun_sym build/bin/
 	cp modules.conf build/modules/simple-slices.conf
 	cp udev.rules build/udev/simple-slices.rules
-	$(m4_dp) other_units/user@.service.d.m4 >build/systemd/default/user@.service.d/20-simple-slices.conf
+	$(m4_neutral) other_units/user@.service.d.m4 >build/systemd/neutral/user@.service.d/20-simple-slices.conf
 	m4 $(m4_args) -I /usr/share/doc/m4/examples profile.sh.m4 >build/profile/simple-slices.sh
 
 hier:
-	mkdir -p build/bin build/profile build/systemd/user build/systemd/$(default_preset) build/snippets build/modules build/udev build/man
-	ln -sf ./$(default_preset) build/systemd/default
-	mkdir -p build/systemd/default/user@.service.d
+	mkdir -p build/bin build/profile build/systemd/user build/systemd/neutral build/snippets build/modules build/udev build/man
+	mkdir -p build/systemd/neutral/user@.service.d
 
 other_units/%.d:
 	@echo "skipped automatic processing for $(@)"
 
 other_units/%: hier
-	$(m4_dp) $(@).m4 > build/systemd/default/$(*)
+	$(m4_neutral) $(@).m4 > build/systemd/neutral/$(*)
 	$(m4_user) $(@).m4 > build/systemd/user/$(*)
 
 %.slice: hier
 	@./alias2override.sh $(m4_args) "slice_meta/$(*).m4"
 	ln -sf ./ssrun_sym "build/bin/$(*)p"
 	m4 $(m4_args) -D ss_slice=$(@) inc/service.m4 >"build/snippets/$(*).conf"
-	$(m4_dp) -D ss_cmd_name="$(*)p" slice_meta/$(*).m4 inc/template.slice.m4 > build/systemd/default/$(@)
+	$(m4_neutral) -D ss_cmd_name="$(*)p" slice_meta/$(*).m4 inc/template.slice.m4 > build/systemd/neutral/$(@)
 	$(m4_user) -D ss_cmd_name="$(*)p" slice_meta/$(*).m4 inc/template.slice.m4 > build/systemd/user/$(@)
 
 %.man: hier
