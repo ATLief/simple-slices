@@ -17,7 +17,7 @@ other_units: $(other_units_list)
 other: hier
 	cp ssrun ssrun_sym build/bin/
 	cp modules.conf build/modules/simple-slices.conf
-	cp udev.rules build/udev/simple-slices.rules
+	cp udev.rules build/udev/86-simple-slices.rules
 	./m4_sdp.sh neutral user@.service 20 $(m4_args) other_units/user@.service.d.m4
 	m4 $(m4_args) -I /usr/share/doc/m4/examples profile.sh.m4 >build/profile/simple-slices.sh
 
