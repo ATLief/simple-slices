@@ -15,7 +15,9 @@ other_units_list := $(basename $(wildcard other_units/*.m4))
 other_units: $(other_units_list)
 
 other: hier
-	cp utils/ssrun utils/ssrun_sym build/bin/
+	cat inc/sdm-header.sh utils/ssrun >build/bin/ssrun
+	cp utils/ssrun_sym build/bin/
+	chmod -R a+x build/bin
 	cp modules.conf build/modules/simple-slices.conf
 	cp udev.rules build/udev/86-simple-slices.rules
 	./m4_sdp.sh neutral user@.service 20 $(m4_args) other_units/user@.service.d.m4
