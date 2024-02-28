@@ -1,0 +1,12 @@
+priority="$1"
+shift 1
+service="simple-slices-delegate@${priority}.service"
+systemctl $systemd_mode start "$service"
+cgroup_path="/sys/fs/cgroup$(systemctl $systemd_mode show "$service" -P ControlGroup)/cgroup.procs"
+if [ -z "$*" ]; then
+	echo "$PPID" >"$cgroup_path" 2>/dev/null || echo "could not change priority of invoking process" >&2
+else
+	for pid in "$@"; do
+		echo "$pid" >"$cgroup_path" 2>/dev/null || echo "could not change priority of process ${pid}" >&2
+	done
+fi
