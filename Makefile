@@ -17,7 +17,7 @@ other_units: $(other_units_list)
 other: hier
 	cat inc/sdm-header.sh utils/ssrun >build/bin/ssrun
 	cat inc/sdm-header.sh utils/sschange >build/bin/sschange
-	cp utils/ssrun_sym build/bin/
+	cp utils/ssrun_sym utils/ssbrief build/bin/
 	chmod -R a+x build/bin
 	cp modules.conf build/modules/simple-slices.conf
 	cp udev.rules build/udev/86-simple-slices.rules
