@@ -16,7 +16,8 @@
 
 
 override_dh_installsystemd:
-	dh_installsystemd
+	dh_installsystemd --package=simple-slices simple-slices.target
+	dh_installsystemd --exclude=simple-slices.target
 
 %:
 	dh $@
