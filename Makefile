@@ -2,6 +2,13 @@ main: hier slices other_units manuals other
 
 debug: clean main
 
+deb: clean
+	mkdir -p build/deb/src
+	ln -sr * build/deb/src/
+	rm build/deb/src/debian
+	cp -a debian build/deb/src/
+	cd build/deb/src && dpkg-buildpackage -b --unsigned-changes
+
 slices_list := $(addsuffix .slice, $(basename $(notdir $(wildcard slice_meta/*.m4))))
 
 m4_args := -I inc -D ss_slice_names="$(slices_list)"
