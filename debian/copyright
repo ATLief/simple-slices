@@ -1,19 +1,12 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
-Source: <url://example.com>
+Source: https://github.com/ATLief/simple-slices
 Upstream-Name: simple-slices
-Upstream-Contact: <preferred name and address to reach the upstream project>
+Upstream-Contact: Alex Lieflander <public@atlief.com>
 
 Files:
  *
 Copyright:
- <years> <put author's name and email here>
- <years> <likewise for another author>
-License: GPL-2.0+
-
-Files:
- debian/*
-Copyright:
- 2023 Alex Lieflander <public@atlief.com>
+ 2023-2024 Alex Lieflander <public@atlief.com>
 License: GPL-2.0+
 
 License: GPL-2.0+
