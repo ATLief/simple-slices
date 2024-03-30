@@ -2,12 +2,13 @@ main: hier slices other_units manuals other
 
 debug: clean main
 
-deb: clean
+deb:
+	dpkg-buildpackage -T clean
 	mkdir -p build/deb/src
 	ln -sr * build/deb/src/
 	rm build/deb/src/debian
 	cp -a debian build/deb/src/
-	cd build/deb/src && dpkg-buildpackage -b --unsigned-changes
+	cd build/deb/src && dpkg-buildpackage -b --unsigned-changes --no-pre-clean
 
 slices_list := $(addsuffix .slice, $(basename $(notdir $(wildcard slice_meta/*.m4))))
 
