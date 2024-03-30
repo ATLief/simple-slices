@@ -1,5 +1,11 @@
 simple-slices (0.7.0-1) UNRELEASED; urgency=medium
 
+  * Added utility to change slice of a running process
+  * Added utility to show a brief summary of current slice
+  * Disabled automatic BFQ priority overrides
+  * Added/changed numeric prefixes to various config files
+  * Moved module load config file to vendor path
+  * Refactored code
   * TBA
 
  -- Alex Lieflander <public@atlief.com>  Sun, 10 Dec 2023 16:48:42 -0500
