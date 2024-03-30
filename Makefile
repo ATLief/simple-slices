@@ -15,7 +15,7 @@ m4_args := -I inc -D ss_slice_names="$(slices_list)"
 
 slices: $(slices_list)
 
-manuals_list := $(basename $(wildcard *.man.md))
+manuals_list := $(basename $(wildcard man/*.md))
 manuals: $(manuals_list)
 
 other_units_list := $(basename $(wildcard other_units/*.m4))
@@ -48,8 +48,8 @@ other_units/%:
 	./m4_sdp.sh neutral $(@) 0 $(m4_args) -D ss_cmd_name="$(*)p" slice_meta/$(*).m4 inc/template.slice.m4
 	./m4_sdp.sh user $(@) 0 $(m4_args) -D ss_cmd_name="$(*)p" slice_meta/$(*).m4 inc/template.slice.m4
 
-%.man: hier
-	cat $(@).md inc/man.md | pandoc --standalone --from=markdown --to=man --output="build/man/$(*)"
+man/%: hier
+	cat $(@).md inc/man.md | pandoc --standalone --from=markdown --to=man --output="build/$(@)"
 
 clean:
 	rm -rf build
