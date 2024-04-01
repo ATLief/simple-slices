@@ -12,7 +12,7 @@ deb:
 
 slices_list := $(addsuffix .slice, $(basename $(notdir $(wildcard slice_meta/*.m4))))
 
-m4_args := -I inc -D ss_slice_names="$(slices_list)"
+m4_args := -I inc -U syscmd -U esyscmd -U mkstemp -U maketemp -D ss_slice_names="$(slices_list)"
 
 slices: $(slices_list)
 
