@@ -5,7 +5,7 @@ child_name="$2"
 override_num="$3"
 shift 3
 parent_path="build/systemd/${preset}"
-if [ "$override_num" -gt 0 ]; then
+if [ "$(echo "$child_name" | rev | cut -d . -f 1)" = "d" ]; then
 	parent_path="${parent_path}/${child_name}"
 	child_name="${override_num}-simple-slices.conf"
 fi
