@@ -29,7 +29,7 @@ other: hier
 	chmod -R a+x build/bin
 	cp modules.conf build/modules/simple-slices.conf
 	cp udev.rules build/udev/86-simple-slices.rules
-	./m4_sdp.sh neutral user@.service.d 20 $(m4_args) other_units/user@.service.d.m4
+	./m4_sdp.sh neutral user@.service.d $(m4_args) other_units/user@.service.d.m4
 	m4 $(m4_args) -I /usr/share/doc/m4/examples profile.sh.m4 >build/profile/simple-slices.sh
 
 hier:
@@ -39,15 +39,15 @@ other_units/%.d:
 	@echo "skipped automatic processing for $(@)"
 
 other_units/%:
-	./m4_sdp.sh neutral $(*) 0 $(m4_args) $(@).m4
-	./m4_sdp.sh user $(*) 0 $(m4_args) $(@).m4
+	./m4_sdp.sh neutral $(*) $(m4_args) $(@).m4
+	./m4_sdp.sh user $(*) $(m4_args) $(@).m4
 
 %.slice: hier
 	@./alias2override.sh $(m4_args) "slice_meta/$(*).m4"
 	ln -sf ./ssrun_sym "build/bin/$(*)p"
 	m4 $(m4_args) -D ss_slice=$(@) inc/service.m4 >"build/snippets/$(*).conf"
-	./m4_sdp.sh neutral $(@) 0 $(m4_args) -D ss_cmd_name="$(*)p" slice_meta/$(*).m4 inc/template.slice.m4
-	./m4_sdp.sh user $(@) 0 $(m4_args) -D ss_cmd_name="$(*)p" slice_meta/$(*).m4 inc/template.slice.m4
+	./m4_sdp.sh neutral $(@) $(m4_args) -D ss_cmd_name="$(*)p" slice_meta/$(*).m4 inc/template.slice.m4
+	./m4_sdp.sh user $(@) $(m4_args) -D ss_cmd_name="$(*)p" slice_meta/$(*).m4 inc/template.slice.m4
 
 man/%: hier
 	cat $(@).md inc/man.md | pandoc --standalone --from=markdown --to=man --output="build/$(@)"
