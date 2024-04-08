@@ -29,14 +29,12 @@ other: hier
 	chmod -R a+x build/bin
 	cp modules.conf build/modules/simple-slices.conf
 	cp udev.rules build/udev/86-simple-slices.rules
-	./m4_sdp.sh neutral user@.service.d $(m4_args) other_units/user@.service.d.m4
 	m4 $(m4_args) -I /usr/share/doc/m4/examples profile.sh.m4 >build/profile/simple-slices.sh
 
 hier:
 	mkdir -p build/bin build/profile build/snippets build/modules build/udev build/man
-
-other_units/%.d:
-	@echo "skipped automatic processing for $(@)"
+other_units/user@.service.d:
+	./m4_sdp.sh neutral $(@F) $(m4_args) $(@).m4
 
 other_units/%:
 	./m4_sdp.sh neutral $(*) $(m4_args) $(@).m4
