@@ -45,9 +45,9 @@ other_units/%:
 %.slice: hier
 	@./alias2override.sh $(m4_args) "slice_meta/$(*).m4"
 	ln -sf ./ssrun_sym "build/bin/$(*)p"
-	m4 $(m4_args) -D ss_slice=$(@) inc/service.m4 >"build/snippets/$(*).conf"
-	./m4_sdp.sh neutral $(@) $(m4_args) -D ss_cmd_name="$(*)p" slice_meta/$(*).m4 inc/template.slice.m4
-	./m4_sdp.sh user $(@) $(m4_args) -D ss_cmd_name="$(*)p" slice_meta/$(*).m4 inc/template.slice.m4
+	m4 $(m4_args) -D "ss_name=$(@)" inc/service.m4 >"build/snippets/$(*).conf"
+	./m4_sdp.sh neutral $(@) $(m4_args) slice_meta/$(*).m4 inc/template.slice.m4
+	./m4_sdp.sh user $(@) $(m4_args) slice_meta/$(*).m4 inc/template.slice.m4
 
 man/%: hier
 	cat $(@).md inc/man.md | pandoc --standalone --from=markdown --to=man --output="build/$(@)"

@@ -1,2 +1,2 @@
 [Service]
-Slice=ss_slice
+Slice=ss_name
