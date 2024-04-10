@@ -18,7 +18,7 @@ slices: $(slices_list)
 
 manuals: $(basename $(wildcard man/*.md))
 
-other_units: $(basename $(wildcard other_units/*.m4))
+other_units: $(addsuffix .unit, $(basename $(wildcard other_units/*.m4)))
 
 other: hier
 	cat inc/sdm-header.sh utils/ssrun >build/bin/ssrun
@@ -31,19 +31,20 @@ other: hier
 
 hier:
 	mkdir -p build/bin build/profile build/snippets build/modules build/udev build/man
-other_units/user@.service.d:
-	./m4_sdp.sh neutral $(@F) $(m4_args) $(@).m4
+other_units/user@.service.d.unit:
+	./m4_sdp.sh neutral $(basename $(@F)) $(m4_args) $(basename $(@)).m4
 
-other_units/%:
-	./m4_sdp.sh neutral $(*) $(m4_args) $(@).m4
-	./m4_sdp.sh user $(*) $(m4_args) $(@).m4
+%.unit %.slice.unit:
+	@echo unit_name=$(basename $(@F)) src_file=$(*).m4
+	./m4_sdp.sh neutral $(basename $(@F)) $(m4_args) $(*).m4 $(m4_args_extra)
+	./m4_sdp.sh user $(basename $(@F)) $(m4_args) $(*).m4 $(m4_args_extra)
 
-%.slice: hier
+%.slice.unit: override m4_args_extra := inc/template.slice.m4
+
+%.slice: hier slice_meta/%.slice.unit
 	@./alias2override.sh $(m4_args) "slice_meta/$(*).m4"
 	ln -sf ./ssrun_sym "build/bin/$(*)p"
 	m4 $(m4_args) -D "ss_name=$(@)" inc/service.m4 >"build/snippets/$(*).conf"
-	./m4_sdp.sh neutral $(@) $(m4_args) slice_meta/$(*).m4 inc/template.slice.m4
-	./m4_sdp.sh user $(@) $(m4_args) slice_meta/$(*).m4 inc/template.slice.m4
 
 man/%: hier
 	cat $(@).md inc/man.md | pandoc --standalone --from=markdown --to=man --output="build/$(@)"
