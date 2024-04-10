@@ -10,9 +10,9 @@ deb:
 	cp -a debian build/deb/src/
 	cd build/deb/src && dpkg-buildpackage -b --unsigned-changes --no-pre-clean
 
-slices_list := $(addsuffix .slice, $(basename $(notdir $(wildcard slice_meta/*.m4))))
+slices_list := $(addsuffix .slice, $(basename $(wildcard slice_meta/*.m4)))
 
-m4_args := -I inc -U syscmd -U esyscmd -U mkstemp -U maketemp -D ss_slice_names="$(slices_list)"
+m4_args := -I inc -U syscmd -U esyscmd -U mkstemp -U maketemp -D ss_slice_names="$(notdir $(slices_list))"
 
 slices: $(slices_list)
 
@@ -41,10 +41,10 @@ other_units/user@.service.d.unit:
 
 %.slice.unit: override m4_args_extra := inc/template.slice.m4
 
-%.slice: hier slice_meta/%.slice.unit
-	@./alias2override.sh $(m4_args) "slice_meta/$(*).m4"
-	ln -sf ./ssrun_sym "build/bin/$(*)p"
-	m4 $(m4_args) -D "ss_name=$(@)" inc/service.m4 >"build/snippets/$(*).conf"
+%.slice: hier %.slice.unit
+	@./alias2override.sh $(m4_args) $(*).m4
+	ln -sf ./ssrun_sym "build/bin/$(*F)p"
+	m4 $(m4_args) -D "ss_name=$(@F)" inc/service.m4 >"build/snippets/$(*F).conf"
 
 man/%: hier
 	cat $(@).md inc/man.md | pandoc --standalone --from=markdown --to=man --output="build/$(@)"
