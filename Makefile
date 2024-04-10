@@ -16,11 +16,9 @@ m4_args := -I inc -U syscmd -U esyscmd -U mkstemp -U maketemp -D ss_slice_names=
 
 slices: $(slices_list)
 
-manuals_list := $(basename $(wildcard man/*.md))
-manuals: $(manuals_list)
+manuals: $(basename $(wildcard man/*.md))
 
-other_units_list := $(basename $(wildcard other_units/*.m4))
-other_units: $(other_units_list)
+other_units: $(basename $(wildcard other_units/*.m4))
 
 other: hier
 	cat inc/sdm-header.sh utils/ssrun >build/bin/ssrun
