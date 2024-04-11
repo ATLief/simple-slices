@@ -16,5 +16,8 @@ if [ "$(echo "$child_name" | rev | cut -d . -f 1)" = "d" ]; then
 		override_num=`expr "$override_num" + 10`
 	done
 fi
-mkdir -p "$parent_path"
-m4 -D "ss_preset=${preset_arg}" -D "ss_name=${unit_name}" "$@" >"${parent_path}/${child_name}"
+m4_args="-D ss_preset=${preset_arg} -D ss_name=${unit_name}"
+if m4 $m4_args "$@" >/dev/null; then
+	mkdir -p "$parent_path"
+	m4 $m4_args "$@" >"${parent_path}/${child_name}"
+fi
