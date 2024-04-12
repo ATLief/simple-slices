@@ -13,16 +13,16 @@ else
 	is_override=false
 fi
 for preset_iter in neutral user server desktop; do
+	m4_args="-D ss_preset=${preset_arg} -D ss_name=${unit_name}"
 	if [ "$preset_iter" = "$preset_arg" ]; then
 		if $is_override; then
 			parent_path="${parent_path}/${child_name}"
 			child_name="${override_num}-simple-slices.conf"
 		fi
+		if m4 $m4_args "$@" >/dev/null; then
+			mkdir -p "$parent_path"
+			m4 $m4_args "$@" >"${parent_path}/${child_name}"
+		fi
 	fi
 	override_num=`expr "$override_num" + 10`
 done
-m4_args="-D ss_preset=${preset_arg} -D ss_name=${unit_name}"
-if m4 $m4_args "$@" >/dev/null; then
-	mkdir -p "$parent_path"
-	m4 $m4_args "$@" >"${parent_path}/${child_name}"
-fi
