@@ -3,13 +3,13 @@ set -e
 preset_arg="$1"
 child_name_orig="$2"
 shift 2
-unit_name="$child_name_orig"
 override_num=20
 if [ "$(echo "$child_name_orig" | rev | cut -d . -f 1)" = "d" ]; then
 	is_override=true
-	unit_name="$(echo "$unit_name" | rev | cut -c 3- | rev)"
+	unit_name="$(echo "$child_name_orig" | rev | cut -c 3- | rev)"
 else
 	is_override=false
+	unit_name="$child_name_orig"
 fi
 for preset_iter in neutral user server desktop; do
 	parent_path="build/systemd/${preset_arg}"
