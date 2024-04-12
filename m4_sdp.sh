@@ -12,14 +12,14 @@ else
 	unit_name="$child_name_orig"
 fi
 for preset_iter in neutral user server desktop; do
-	parent_path="build/systemd/${preset_arg}"
+	parent_path="build/systemd/${preset_iter}"
 	if $is_override; then
 		parent_path="${parent_path}/${child_name_orig}"
 		child_name="${override_num}-simple-slices.conf"
 	else
 		child_name="$child_name_orig"
 	fi
-	m4_args="-D ss_preset=${preset_arg} -D ss_name=${unit_name}"
+	m4_args="-D ss_preset=${preset_iter} -D ss_name=${unit_name}"
 	if [ "$preset_iter" = "$preset_arg" ]; then
 		if m4 $m4_args "$@" >/dev/null; then
 			mkdir -p "$parent_path"
