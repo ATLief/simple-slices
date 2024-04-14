@@ -1,8 +1,7 @@
 #!/bin/sh
 set -e
-preset_arg="$1"
-child_name_orig="$2"
-shift 2
+child_name_orig="$1"
+shift 1
 override_num=20
 if [ "$(echo "$child_name_orig" | rev | cut -d . -f 1)" = "d" ]; then
 	is_override=true
@@ -20,11 +19,9 @@ for preset_iter in neutral user server desktop; do
 		child_name="$child_name_orig"
 	fi
 	m4_args="-D ss_preset=${preset_iter} -D ss_name=${unit_name}"
-	if [ "$preset_iter" = "$preset_arg" ]; then
-		if m4 $m4_args "$@" >/dev/null; then
-			mkdir -p "$parent_path"
-			m4 $m4_args "$@" >"${parent_path}/${child_name}"
-		fi
+	if m4 $m4_args "$@" inc/assert-whitelist.m4 >/dev/null; then
+		mkdir -p "$parent_path"
+		m4 $m4_args "$@" >"${parent_path}/${child_name}"
 	fi
 	override_num=`expr "$override_num" + 10`
 done

@@ -32,12 +32,11 @@ other: hier
 hier:
 	mkdir -p build/bin build/profile build/snippets build/modules build/udev build/man
 other_units/user@.service.d.unit:
-	./m4_sdp.sh neutral $(basename $(@F)) $(m4_args) $(basename $(@)).m4
+	./m4_sdp.sh $(basename $(@F)) -D ss_whitelist="neutral" $(m4_args) $(basename $(@)).m4
 
 %.unit %.slice.unit:
 	@echo unit_name=$(basename $(@F)) src_file=$(*).m4
-	./m4_sdp.sh neutral $(basename $(@F)) $(m4_args) $(*).m4 $(m4_args_extra)
-	./m4_sdp.sh user $(basename $(@F)) $(m4_args) $(*).m4 $(m4_args_extra)
+	./m4_sdp.sh $(basename $(@F)) -D ss_whitelist="neutral user" $(m4_args) $(*).m4 $(m4_args_extra)
 
 %.slice.unit: override m4_args_extra := inc/template.slice.m4
 
