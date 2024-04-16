@@ -20,6 +20,7 @@ for preset_iter in neutral user server desktop; do
 	fi
 	m4_args="-D ss_preset=${preset_iter} -D ss_name=${unit_name}"
 	if m4 $m4_args "$@" inc/assert-whitelist.m4 >/dev/null; then
+		echo "$(basename "$0"): [${preset_iter}] ${child_name_orig}"
 		mkdir -p "$parent_path"
 		m4 $m4_args "$@" >"${parent_path}/${child_name}"
 	fi
