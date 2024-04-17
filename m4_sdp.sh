@@ -23,6 +23,11 @@ for preset_iter in neutral user server desktop; do
 		echo "$(basename "$0"): [${preset_iter}] ${child_name_orig}"
 		mkdir -p "$parent_path"
 		m4 $m4_args "$@" >"${parent_path}/${child_name}"
+	else
+		ecode=$?
+		if [ "$ecode" -lt 100 -o "$ecode" -gt 200 ]; then
+			exit "$ecode"
+		fi
 	fi
 	override_num=`expr "$override_num" + 10`
 done
