@@ -16,7 +16,7 @@ ssrun - utility to execute commands with various priorities
 
 This manual page documents briefly the **ssrun** command and (symbolic links of) the **ssrun_sym** command.
 
-**ssrun** is a somewhat simple wrapper of **systemd-run**(1); it creates a SystemD scope, assigns that scope to the specified slice, and then executes the specified command within the scope. The scope (and thus the command) attachs to the current TTY and inherits all environment variables, as if that command was executed without the wrapper.
+**ssrun** is a somewhat simple wrapper of **systemd-run**(1); it creates a systemd scope, assigns that scope to the specified slice, and then executes the specified command within the scope. The scope (and thus the command) attachs to the current TTY and inherits all environment variables, as if that command was executed without the wrapper.
 
 If **ssrun** is executed as a user with UID 0 (usually the root user), **systemd-run**(1) is executed in system mode. Otherwise it is executed in user mode.
 

@@ -82,7 +82,7 @@ simple-slices (0.4.3-1) unstable; urgency=medium
 
 simple-slices (0.4.2-1) unstable; urgency=medium
 
-  * Added user mode version of most SystemD units
+  * Added user mode version of most systemd units
   * Refactored and simplified code
   * Added new standalone tool (ssrun)
   * Added prerequisites for Markdown-based man pages
@@ -114,8 +114,8 @@ simple-slices (0.3.3-1) unstable; urgency=medium
 
 simple-slices (0.3.2-1) unstable; urgency=medium
 
-  * Removed usr path prefix from SystemD install file
-    * Now triggers SystemD install hooks
+  * Removed usr path prefix from systemd install file
+    * Now triggers systemd install hooks
       * Enables and starts the installed units by default
   * Removed usr path prefix from bin install file
 

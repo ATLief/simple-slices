@@ -2,7 +2,7 @@
 
 # Experimental algorithm to transform weights
 
-SystemD does not currently support aliasing slices, but another approach is to create multiple slices with the same weight. This cannot preserve the effective weight of each slice, but each weight value can be adjusted such that the difference in effective weight between each slice remains (relatively) constant after the duplication. **Note that the resources given to slices of a particular weight value will still be greater than the resources given to a single slice of that weight value before the transformation.** The transformation can be represented by the following equation (which might not render properly):
+systemd does not currently support aliasing slices, but another approach is to create multiple slices with the same weight. This cannot preserve the effective weight of each slice, but each weight value can be adjusted such that the difference in effective weight between each slice remains (relatively) constant after the duplication. **Note that the resources given to slices of a particular weight value will still be greater than the resources given to a single slice of that weight value before the transformation.** The transformation can be represented by the following equation (which might not render properly):
 
 $$\frac{W_{k+1}-W_{k}}{\sum_{n=0}^{N-1}W_{n}}=\frac{A_{k+1}-A_{k}}{A_{r}+\sum_{n=0}^{N-1}A_{n}},\forall{0\le{k}\lt{N-1}}\tag{1}$$
 
