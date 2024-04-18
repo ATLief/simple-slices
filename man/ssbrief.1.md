@@ -1,6 +1,6 @@
 % ssbrief(1) | User Commands
 %
-% "March 31 2024"
+% "April 18 2024"
 
 # NAME
 
@@ -17,10 +17,6 @@ This manual page documents briefly the **ssbrief** command.
 # OPTIONS
 
 This command does not accept any arguments.
-
-# BUGS
-
-Please report bugs to https://github.com/ATLief/simple-slices/issues.
 
 # SEE ALSO
 

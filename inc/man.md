@@ -1,4 +1,8 @@
 
+# BUGS
+
+Please report bugs to https://github.com/ATLief/simple-slices/issues.
+
 # AUTHOR
 
 Alex Lieflander <public@atlief.com>

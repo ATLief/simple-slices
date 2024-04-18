@@ -1,6 +1,6 @@
 % simple-slices(7) | Miscellaneous
 %
-% "November 25 2023"
+% "April 18 2024"
 
 # NAME
 
@@ -25,11 +25,7 @@ It isn't necessary to read or understand this section in order to use this packa
 
 SystemD includes a feature called "slices", which combines "services" and "scopes" into groups that are preferentially given access to computing resources based on their assigned priority (similar to "nice" and "ionice"); if the system isn't resource-constrained, these priorities have no effect. Each slice defines a priority for CPU processing, disk bandwidth, RAM storage, and PID assignment. Future versions may also support priorities for network bandwidth and core types for hybrid CPUs.
 
-# BUGS
-
-A restart may be required in order to start using all features. Individual (non-root) users may need to manually enable simple-slices.target.
-
-Please report bugs to https://github.com/ATLief/simple-slices/issues.
+Note: A restart may be required in order to start using all features. Individual (non-root) users may need to manually enable simple-slices.target.
 
 # SEE ALSO
 

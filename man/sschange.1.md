@@ -1,6 +1,6 @@
 % sschange(1) | User Commands
 %
-% "March 30 2024"
+% "April 18 2024"
 
 # NAME
 
@@ -49,10 +49,6 @@ Bad configuration file. Exiting.
     Code Diagnostic
     0 Program exited successfully.
     1 The configuration file seems to be broken.
-
-# BUGS
-
-Please report bugs to https://github.com/ATLief/simple-slices/issues.
 
 # SEE ALSO
 
