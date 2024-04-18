@@ -10,8 +10,6 @@ ssrun - utility to execute commands with various priorities
 
 **ssrun** _slice_ [_systemd-run options_] _command_ [_command arguments_]
 
-**ssrun** [{**-h** | **\-\-help**} | {**-v** | **\-\-version**}]
-
 # DESCRIPTION
 
 This manual page documents briefly the **ssrun** command and (symbolic links of) the **ssrun_sym** command.
@@ -29,36 +27,6 @@ If **ssrun** is executed as a user with UID 0 (usually the root user), **systemd
 (Symbolic links) of **ssrun_sym** internally call **ssrun** with the base of their name automatically provided as the first positional argument. All other arguments are appended to that call. Thus, these "commands" pass all specified arguments to **systemd-run**(1), and the desired slice is specified by using the respective symlink.
 
 **ssrun** automatically appends **\-\-system** to the **systemd-run**(1) options if the effective UID of the invoking user is 0 (usually the root user). Otherwise it appends the **\-\-user** option. This behavior can be overridden by additionally supplying one of these options before the desired command. When run in user mode, slices are created within your user session, and so only affect their priority relative to the other processes within your session.
-
-# FILES
-
-/etc/foo.conf
-:   The system-wide configuration file to control the behaviour of
-    ssrun. See **foo.conf**(5) for further details.
-
-${HOME}/.foo.conf
-:   The per-user configuration file to control the behaviour of
-    ssrun. See **foo.conf**(5) for further details.
-
-# ENVIRONMENT
-
-**FOO_CONF**
-:   If used, the defined file is used as configuration file (see also
-    the section called “FILES”).
-
-# DIAGNOSTICS
-
-The following diagnostics may be issued on stderr:
-
-Bad configuration file. Exiting.
-:   The configuration file seems to contain a broken configuration
-    line. Use the **\-\-verbose** option, to get more info.
-
-**ssrun** provides some return codes, that can be used in scripts:
-
-    Code Diagnostic
-    0 Program exited successfully.
-    1 The configuration file seems to be broken.
 
 # SEE ALSO
 
