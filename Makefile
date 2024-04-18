@@ -10,7 +10,8 @@ deb:
 	cp -a debian build/deb/src/
 	cd build/deb/src && dpkg-buildpackage -b --unsigned-changes --no-pre-clean
 
-slices_list := $(addsuffix .slice, $(basename $(wildcard slice_meta/*.m4)))
+slices_stems := $(basename $(wildcard slice_meta/*.m4))
+slices_list := $(addsuffix .slice, $(slices_stems))
 
 m4_args := -I inc -U syscmd -U esyscmd -U mkstemp -U maketemp -D ss_slice_names="$(notdir $(slices_list))"
 
@@ -35,10 +36,12 @@ hier:
 %.unit %.slice.unit:
 	@./m4_sdp.sh $(basename $(@F)) -D ss_whitelist="neutral user" $(m4_args) $(*).m4 $(m4_args_extra)
 
+%.d.alias2override:
+	@./m4_sdp.sh $(basename $(@F)) $(m4_args) $(*D).m4 inc/slice.m4 inc/assert-alias.m4
+
 %.slice.unit: override m4_args_extra := inc/template.slice.m4
 
-%.slice: hier %.slice.unit
-	@./alias2override.sh $(m4_args) $(*).m4
+%.slice: hier %.slice.unit $(addprefix %/,$(addsuffix .d.alias2override,$(sort $(foreach slice_stem,$(slices_stems),$(foreach preset,neutral user server desktop,$(shell m4 $(m4_args) $(slice_stem).m4 -D ss_extract=ss_alias_$(preset) inc/extract.m4))))))
 	ln -sf ./ssrun_sym "build/bin/$(*F)p"
 	m4 $(m4_args) -D "ss_name=$(@F)" inc/service.m4 >"build/snippets/$(*F).conf"
 
