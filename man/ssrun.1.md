@@ -4,7 +4,7 @@
 
 # NAME
 
-ssrun - utility to execute commands with various priorities
+ssrun - utility to execute commands with specified priority
 
 # SYNOPSIS
 
