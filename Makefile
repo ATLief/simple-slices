@@ -8,7 +8,7 @@ deb:
 	ln -sr * build/deb/src/
 	rm build/deb/src/debian
 	cp -a debian build/deb/src/
-	cd build/deb/src && dpkg-buildpackage -b --unsigned-changes --no-pre-clean
+	cd build/deb/src && dpkg-buildpackage -b --no-sign --no-pre-clean
 
 slices_stems := $(basename $(wildcard slice_meta/*.m4))
 slices_list := $(addsuffix .slice, $(slices_stems))
