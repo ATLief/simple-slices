@@ -34,8 +34,6 @@ Package: simple-slices-bin
 Architecture: all
 Depends:
  ${misc:Depends},
- coreutils,
- util-linux,
  systemd,
 Recommends:
  simple-slices (= ${source:Version}),
