@@ -1,4 +1,4 @@
-main: hier slices other_units manuals other
+main: hier slices other_units utilities manuals other
 
 debug: clean main
 
@@ -21,11 +21,13 @@ manuals: $(basename $(wildcard man/*.md))
 
 other_units: $(addsuffix .unit, $(basename $(wildcard other_units/*.m4)))
 
-other: hier
+utilities: hier
 	cat inc/sdm-header.sh utils/ssrun >build/bin/ssrun
 	cat inc/sdm-header.sh utils/sschange >build/bin/sschange
 	cp utils/ssrun_sym utils/ssbrief build/bin/
 	chmod -R a+x build/bin
+
+other: hier
 	cp modules.conf build/modules/simple-slices.conf
 	cp udev.rules build/udev/86-simple-slices.rules
 	m4 $(m4_args) -I /usr/share/doc/m4/examples profile.sh.m4 >build/profile/simple-slices.sh
