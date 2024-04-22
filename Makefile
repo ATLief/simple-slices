@@ -27,13 +27,14 @@ utilities: hier
 	cp utils/ssrun_sym utils/ssbrief build/bin/
 	chmod -R a+x build/bin
 
-other: hier
+other:
+	mkdir -p build/modules build/udev build/profile
 	cp modules.conf build/modules/simple-slices.conf
 	cp udev.rules build/udev/86-simple-slices.rules
 	m4 $(m4_args) -I /usr/share/doc/m4/examples profile.sh.m4 >build/profile/simple-slices.sh
 
 hier:
-	mkdir -p build/bin build/profile build/snippets build/modules build/udev build/man
+	mkdir -p build/bin build/snippets build/man
 
 %.unit %.slice.unit:
 	@./m4_sdp.sh $(basename $(@F)) -D ss_whitelist="neutral user" $(m4_args) $(*).m4 $(m4_args_extra)
