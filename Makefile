@@ -1,4 +1,4 @@
-main: hier slices other_units utilities manuals other
+main: slices other_units utilities manuals other
 
 debug: clean main
 
