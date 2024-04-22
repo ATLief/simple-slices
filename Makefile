@@ -21,7 +21,7 @@ manuals: $(basename $(wildcard man/*.md))
 
 other_units: $(addsuffix .unit, $(basename $(wildcard other_units/*.m4)))
 
-utilities: | hier
+utilities: | build/bin
 	cat inc/sdm-header.sh utils/ssrun >build/bin/ssrun
 	cat inc/sdm-header.sh utils/sschange >build/bin/sschange
 	cp utils/ssrun_sym utils/ssbrief build/bin/
@@ -33,8 +33,8 @@ other:
 	cp udev.rules build/udev/86-simple-slices.rules
 	m4 $(m4_args) -I /usr/share/doc/m4/examples profile.sh.m4 >build/profile/simple-slices.sh
 
-hier:
-	mkdir -p build/bin build/snippets build/man
+build/bin build/snippets build/man:
+	mkdir -p $(@)
 
 %.unit %.slice.unit:
 	@./m4_sdp.sh $(basename $(@F)) -D ss_whitelist="neutral user" $(m4_args) $(*).m4 $(m4_args_extra)
@@ -44,11 +44,11 @@ hier:
 
 %.slice.unit: override m4_args_extra := inc/template.slice.m4
 
-%.slice: %.slice.unit $(addprefix %/,$(addsuffix .d.alias2override,$(sort $(foreach slice_stem,$(slices_stems),$(foreach preset,neutral user server desktop,$(shell m4 $(m4_args) $(slice_stem).m4 -D ss_extract=ss_alias_$(preset) inc/extract.m4)))))) | hier
+%.slice: %.slice.unit $(addprefix %/,$(addsuffix .d.alias2override,$(sort $(foreach slice_stem,$(slices_stems),$(foreach preset,neutral user server desktop,$(shell m4 $(m4_args) $(slice_stem).m4 -D ss_extract=ss_alias_$(preset) inc/extract.m4)))))) | build/bin build/snippets
 	ln -sf ./ssrun_sym "build/bin/$(*F)p"
 	m4 $(m4_args) -D "ss_name=$(@F)" inc/service.m4 >"build/snippets/$(*F).conf"
 
-man/%: | hier
+man/%: | build/man
 	cat $(@).md inc/man.md | pandoc --standalone --from=markdown --to=man --output="build/$(@)"
 
 clean:
