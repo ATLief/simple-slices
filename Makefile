@@ -21,7 +21,7 @@ manuals: $(basename $(wildcard man/*.md))
 
 other_units: $(addsuffix .unit, $(basename $(wildcard other_units/*.m4)))
 
-utilities: hier
+utilities: | hier
 	cat inc/sdm-header.sh utils/ssrun >build/bin/ssrun
 	cat inc/sdm-header.sh utils/sschange >build/bin/sschange
 	cp utils/ssrun_sym utils/ssbrief build/bin/
@@ -44,11 +44,11 @@ hier:
 
 %.slice.unit: override m4_args_extra := inc/template.slice.m4
 
-%.slice: hier %.slice.unit $(addprefix %/,$(addsuffix .d.alias2override,$(sort $(foreach slice_stem,$(slices_stems),$(foreach preset,neutral user server desktop,$(shell m4 $(m4_args) $(slice_stem).m4 -D ss_extract=ss_alias_$(preset) inc/extract.m4))))))
+%.slice: %.slice.unit $(addprefix %/,$(addsuffix .d.alias2override,$(sort $(foreach slice_stem,$(slices_stems),$(foreach preset,neutral user server desktop,$(shell m4 $(m4_args) $(slice_stem).m4 -D ss_extract=ss_alias_$(preset) inc/extract.m4)))))) | hier
 	ln -sf ./ssrun_sym "build/bin/$(*F)p"
 	m4 $(m4_args) -D "ss_name=$(@F)" inc/service.m4 >"build/snippets/$(*F).conf"
 
-man/%: hier
+man/%: | hier
 	cat $(@).md inc/man.md | pandoc --standalone --from=markdown --to=man --output="build/$(@)"
 
 clean:
