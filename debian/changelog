@@ -1,3 +1,9 @@
+simple-slices (0.7.1-1) UNRELEASED; urgency=medium
+
+  * TBA
+
+ -- Alex Lieflander <public@atlief.com>  Tue, 23 Apr 2024 12:32:31 -0400
+
 simple-slices (0.7.0-1) unstable; urgency=medium
 
   * Added utility to change slice of a running process
