@@ -4,7 +4,6 @@ simple-slices (0.7.0-1) UNRELEASED; urgency=medium
   * Added utility to show a brief summary of current slice
   * Fixed several situations where priorities were ignored
   * Fixed situation where upgrading could fail
-  * * Note: Upgrading from previous versions can still fail
   * Updated package descriptions and copyright notice
   * Refactored code
 
