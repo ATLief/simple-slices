@@ -1,7 +1,8 @@
 #!/bin/sh
 set -e
-child_name_orig="$1"
-shift 1
+parent_path_orig="$1"
+child_name_orig="$2"
+shift 2
 override_num=20
 if [ "$(echo "$child_name_orig" | rev | cut -d . -f 1)" = "d" ]; then
 	is_override=true
@@ -11,7 +12,7 @@ else
 	unit_name="$child_name_orig"
 fi
 for preset_iter in neutral user server desktop; do
-	parent_path="build/systemd/${preset_iter}"
+	parent_path="${parent_path_orig}/${preset_iter}"
 	if $is_override; then
 		parent_path="${parent_path}/${child_name_orig}"
 		child_name="${override_num}-simple-slices.conf"

@@ -37,10 +37,10 @@ build/bin build/snippets build/man:
 	mkdir -p $(@)
 
 %.unit %.slice.unit:
-	@./m4_sdp.sh $(basename $(@F)) -D ss_whitelist="neutral user" $(m4_args) $(*).m4 $(m4_args_extra)
+	@./m4_sdp.sh build/systemd $(basename $(@F)) -D ss_whitelist="neutral user" $(m4_args) $(*).m4 $(m4_args_extra)
 
 %.d.alias2override:
-	@./m4_sdp.sh $(basename $(@F)) $(m4_args) $(*D).m4 inc/slice.m4 inc/assert-alias.m4
+	@./m4_sdp.sh build/systemd $(basename $(@F)) $(m4_args) $(*D).m4 inc/slice.m4 inc/assert-alias.m4
 
 %.slice.unit: override m4_args_extra := inc/template.slice.m4
 
