@@ -1,4 +1,4 @@
-simple-slices (0.7.0-1) UNRELEASED; urgency=medium
+simple-slices (0.7.0-1) unstable; urgency=medium
 
   * Added utility to change slice of a running process
   * Added utility to show a brief summary of current slice
@@ -7,7 +7,7 @@ simple-slices (0.7.0-1) UNRELEASED; urgency=medium
   * Updated package descriptions and copyright notice
   * Refactored code
 
- -- Alex Lieflander <public@atlief.com>  Sun, 10 Dec 2023 16:48:42 -0500
+ -- Alex Lieflander <public@atlief.com>  Tue, 23 Apr 2024 10:11:28 -0400
 
 simple-slices (0.6.1-1) unstable; urgency=medium
 
