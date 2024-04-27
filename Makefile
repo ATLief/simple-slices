@@ -23,9 +23,9 @@ manuals: $(basename $(wildcard man/*.md))
 
 other_units: $(addsuffix .unit, $(basename $(wildcard other_units/*.m4)))
 
-utilities: | $(BD)/bin
-	cat inc/sdm-header.sh utils/ssrun >$(BD)/bin/ssrun
-	cat inc/sdm-header.sh utils/sschange >$(BD)/bin/sschange
+utilities: inc/sdm-header.sh $(wildcard utils/*) | $(BD)/bin
+	cat $(<) utils/ssrun >$(BD)/bin/ssrun
+	cat $(<) utils/sschange >$(BD)/bin/sschange
 	cp utils/ssrun_sym utils/ssbrief $(BD)/bin/
 	chmod -R a+x $(BD)/bin
 
@@ -38,20 +38,20 @@ other:
 $(BD)/bin $(BD)/snippets $(BD)/man:
 	mkdir -p $(@)
 
-%.unit %.slice.unit:
-	@./m4_sdp.sh $(BD)/systemd $(basename $(@F)) -D ss_whitelist="neutral user" $(m4_args) $(*).m4 $(m4_args_extra)
+%.unit %.slice.unit: %.m4
+	@./m4_sdp.sh $(BD)/systemd $(basename $(@F)) -D ss_whitelist="neutral user" $(m4_args) $(^) $(m4_args_extra)
 
-%.d.alias2override:
-	@./m4_sdp.sh $(BD)/systemd $(basename $(@F)) $(m4_args) $(*D).m4 inc/slice.m4 inc/assert-alias.m4
+%.d.alias2override: inc/slice.m4 inc/assert-alias.m4
+	@./m4_sdp.sh $(BD)/systemd $(basename $(@F)) $(m4_args) $(*D).m4 $(^)
 
 %.slice.unit: override m4_args_extra := inc/template.slice.m4
 
-%.slice: %.slice.unit $(addprefix %/,$(addsuffix .d.alias2override,$(sort $(foreach slice_stem,$(slices_stems),$(foreach preset,neutral user server desktop,$(shell m4 $(m4_args) $(slice_stem).m4 -D ss_extract=ss_alias_$(preset) inc/extract.m4)))))) | $(BD)/bin $(BD)/snippets
+%.slice: inc/service.m4 %.slice.unit $(addprefix %/,$(addsuffix .d.alias2override,$(sort $(foreach slice_stem,$(slices_stems),$(foreach preset,neutral user server desktop,$(shell m4 $(m4_args) $(slice_stem).m4 -D ss_extract=ss_alias_$(preset) inc/extract.m4)))))) | $(BD)/bin $(BD)/snippets
 	ln -sf ./ssrun_sym "$(BD)/bin/$(*F)p"
-	m4 $(m4_args) -D "ss_name=$(@F)" inc/service.m4 >"$(BD)/snippets/$(*F).conf"
+	m4 $(m4_args) -D "ss_name=$(@F)" $(<) >"$(BD)/snippets/$(*F).conf"
 
-man/%: | $(BD)/man
-	cat $(@).md inc/man.md | pandoc --standalone --from=markdown --to=man --output="$(BD)/$(@)"
+man/%: man/%.md inc/man.md | $(BD)/man
+	cat $(^) | pandoc --standalone --from=markdown --to=man --output="$(BD)/$(@)"
 
 clean:
 	rm -rf $(BD)
