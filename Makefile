@@ -19,7 +19,7 @@ m4_args := -I inc -U syscmd -U esyscmd -U mkstemp -U maketemp -D ss_slice_names=
 
 slices: $(slices_list)
 
-manuals: $(basename $(wildcard man/*.md))
+manuals: $(addprefix $(BD)/,$(basename $(wildcard man/*.md)))
 
 other_units: $(addsuffix .unit, $(basename $(wildcard other_units/*.m4)))
 
@@ -50,8 +50,8 @@ $(BD)/bin $(BD)/snippets $(BD)/man:
 	ln -sf ./ssrun_sym "$(BD)/bin/$(*F)p"
 	m4 $(m4_args) -D "ss_name=$(@F)" $(<) >"$(BD)/snippets/$(*F).conf"
 
-man/%: man/%.md inc/man.md | $(BD)/man
-	cat $(^) | pandoc --standalone --from=markdown --to=man --output="$(BD)/$(@)"
+$(BD)/man/%: man/%.md inc/man.md | $(BD)/man
+	cat $(^) | pandoc --standalone --from=markdown --to=man --output="$(@)"
 
 clean:
 	rm -rf $(BD)
