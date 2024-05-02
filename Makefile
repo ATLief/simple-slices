@@ -12,8 +12,8 @@ deb:
 	cp -a debian $(BD)/deb/src/
 	cd $(BD)/deb/src && dpkg-buildpackage -b --no-sign --no-pre-clean
 
-slices_stems := $(basename $(wildcard slice_meta/*.m4))
-slices_list := $(addsuffix .slice, $(slices_stems))
+slices_src := $(wildcard slice_meta/*.m4)
+slices_list := $(addsuffix .slice, $(basename $(slices_src)))
 
 m4_args := -I inc -U syscmd -U esyscmd -U mkstemp -U maketemp -D ss_slice_names="$(notdir $(slices_list))"
 
@@ -46,7 +46,7 @@ $(BD)/bin $(BD)/snippets $(BD)/man:
 
 %.slice.unit: override m4_args_extra := inc/template.slice.m4
 
-%.slice: inc/service.m4 %.slice.unit $(addprefix %/,$(addsuffix .d.alias2override,$(sort $(foreach slice_stem,$(slices_stems),$(foreach preset,neutral user server desktop,$(shell m4 $(m4_args) $(slice_stem).m4 -D ss_extract=ss_alias_$(preset) inc/extract.m4)))))) | $(BD)/bin $(BD)/snippets
+%.slice: inc/service.m4 %.slice.unit $(addprefix %/,$(addsuffix .d.alias2override,$(sort $(foreach slice_src,$(slices_src),$(foreach preset,neutral user server desktop,$(shell m4 $(m4_args) $(slice_src) -D ss_extract=ss_alias_$(preset) inc/extract.m4)))))) | $(BD)/bin $(BD)/snippets
 	ln -sf ./ssrun_sym "$(BD)/bin/$(*F)p"
 	m4 $(m4_args) -D "ss_name=$(@F)" $(<) >"$(BD)/snippets/$(*F).conf"
 
