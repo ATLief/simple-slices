@@ -2,7 +2,7 @@
 set -e
 cgroup_path="$(tail -n 1 /proc/self/cgroup | cut -d : -f 3)"
 cgroup_brief="$(echo "$cgroup_path" | rev | cut -d / -f 2 | rev | cut -d . -f 1)"
-if [ "$(echo "$cgroup_path" | cut -d / -f 2)" = "user.slice" ]; then
+if [ "$(echo "$cgroup_path" | cut -d / -f 3 | tr -- - @ | cut -d @ -f 1)" = "user" ]; then
 	cgroup_brief="${cgroup_brief}u"
 fi
 echo "$cgroup_brief"
