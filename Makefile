@@ -23,11 +23,11 @@ manuals: $(addprefix $(BD)/,$(basename $(wildcard man/*.md)))
 
 other_units: $(addsuffix .unit, $(basename $(wildcard other_units/*.m4)))
 
-utilities: inc/sdm-header.sh $(wildcard util/*) | $(BD)/bin
-	cat $(<) util/ssrun >$(BD)/bin/ssrun
-	cat $(<) util/sschange >$(BD)/bin/sschange
-	cp util/ssrun_sym util/ssbrief $(BD)/bin/
-	chmod -R a+x $(BD)/bin
+utilities: inc/sdm-header.sh $(wildcard util/*) | $(BD)/util
+	cat $(<) util/ssrun >$(BD)/util/ssrun
+	cat $(<) util/sschange >$(BD)/util/sschange
+	cp util/ssrun_sym util/ssbrief $(BD)/util/
+	chmod -R a+x $(BD)/util
 
 other:
 	mkdir -p $(BD)/modules $(BD)/udev $(BD)/profile
@@ -35,7 +35,7 @@ other:
 	cp udev.rules $(BD)/udev/86-simple-slices.rules
 	m4 $(m4_args) -I /usr/share/doc/m4/examples profile.sh.m4 >$(BD)/profile/simple-slices.sh
 
-$(BD)/bin $(BD)/snippets $(BD)/man:
+$(BD)/util $(BD)/snippets $(BD)/man:
 	mkdir -p $(@)
 
 %.unit %.slice.unit: %.m4
@@ -46,8 +46,8 @@ $(BD)/bin $(BD)/snippets $(BD)/man:
 
 %.slice.unit: override m4_args_extra := inc/template.slice.m4
 
-%.slice: inc/service.m4 %.slice.unit $(addprefix %/,$(addsuffix .d.alias2override,$(sort $(foreach slice_src,$(slices_src),$(foreach preset,neutral user server desktop,$(shell m4 $(m4_args) $(slice_src) -D ss_extract=ss_alias_$(preset) inc/extract.m4)))))) | $(BD)/bin $(BD)/snippets
-	ln -sf ./ssrun_sym "$(BD)/bin/$(*F)p"
+%.slice: inc/service.m4 %.slice.unit $(addprefix %/,$(addsuffix .d.alias2override,$(sort $(foreach slice_src,$(slices_src),$(foreach preset,neutral user server desktop,$(shell m4 $(m4_args) $(slice_src) -D ss_extract=ss_alias_$(preset) inc/extract.m4)))))) | $(BD)/util $(BD)/snippets
+	ln -sf ./ssrun_sym "$(BD)/util/$(*F)p"
 	m4 $(m4_args) -D "ss_name=$(@F)" $(<) >"$(BD)/snippets/$(*F).conf"
 
 $(BD)/man/%: man/%.md inc/man.md | $(BD)/man
