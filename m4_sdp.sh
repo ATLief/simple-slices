@@ -11,7 +11,7 @@ else
 	is_override=false
 	unit_name="$child_name_orig"
 fi
-for preset_iter in neutral user server desktop; do
+for preset_iter in neutral user server desktop util; do
 	parent_path="${parent_path_orig}/${preset_iter}"
 	if $is_override; then
 		parent_path="${parent_path}/${child_name_orig}"

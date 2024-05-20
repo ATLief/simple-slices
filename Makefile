@@ -46,7 +46,7 @@ $(BD)/util $(BD)/snippets $(BD)/man:
 
 %.slice.unit: override m4_args_extra := inc/template.slice.m4
 
-%.slice: inc/service.m4 %.slice.unit $(addprefix %/,$(addsuffix .d.alias2override,$(sort $(foreach slice_src,$(slices_src),$(foreach preset,neutral user server desktop,$(shell m4 $(m4_args) $(slice_src) -D ss_extract=ss_alias_$(preset) inc/extract.m4)))))) | $(BD)/util $(BD)/snippets
+%.slice: inc/service.m4 %.slice.unit $(addprefix %/,$(addsuffix .d.alias2override,$(sort $(foreach slice_src,$(slices_src),$(foreach preset,neutral user server desktop util,$(shell m4 $(m4_args) $(slice_src) -D ss_extract=ss_alias_$(preset) inc/extract.m4)))))) | $(BD)/util $(BD)/snippets
 	ln -sf ./ssrun_sym "$(BD)/util/$(*F)p"
 	m4 $(m4_args) -D "ss_name=$(@F)" $(<) >"$(BD)/snippets/$(*F).conf"
 
