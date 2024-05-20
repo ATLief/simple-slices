@@ -23,10 +23,10 @@ manuals: $(addprefix $(BD)/,$(basename $(wildcard man/*.md)))
 
 other_units: $(addsuffix .unit, $(basename $(wildcard other_units/*.m4)))
 
-utilities: inc/sdm-header.sh $(wildcard utils/*) | $(BD)/bin
-	cat $(<) utils/ssrun >$(BD)/bin/ssrun
-	cat $(<) utils/sschange >$(BD)/bin/sschange
-	cp utils/ssrun_sym utils/ssbrief $(BD)/bin/
+utilities: inc/sdm-header.sh $(wildcard util/*) | $(BD)/bin
+	cat $(<) util/ssrun >$(BD)/bin/ssrun
+	cat $(<) util/sschange >$(BD)/bin/sschange
+	cp util/ssrun_sym util/ssbrief $(BD)/bin/
 	chmod -R a+x $(BD)/bin
 
 other:
