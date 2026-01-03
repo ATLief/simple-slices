@@ -10,7 +10,7 @@ Alex Lieflander <public@atlief.com>
 
 # COPYRIGHT
 
-Copyright © 2023-2024 Alex Lieflander
+Copyright © 2023-2026 Alex Lieflander
 
 This manual page was written for the Debian system (and may be used by
 others).
