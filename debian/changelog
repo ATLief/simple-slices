@@ -1,8 +1,14 @@
-simple-slices (0.7.1-1~alpha5) UNRELEASED; urgency=medium
+simple-slices (0.7.1-1~beta1) UNRELEASED; urgency=medium
 
-  * TBA
+  * Clarified license as GPLv2 but not later
+  * * This change was made earlier, but a file containing the "or later" clause was missed
+  * Increased Standards-Version to 4.7.3
+  * * This required adding the usr/ prefix to install paths
+  * Fixed bug that could cause system instability during package removal
+  * Updated documentation
+  * Refactored code
 
- -- Alex Lieflander <public@atlief.com>  Tue, 23 Apr 2024 12:32:31 -0400
+ -- Alex Lieflander <public@atlief.com>  Tue, 06 Jan 2026 13:24:15 -0500
 
 simple-slices (0.7.0-1) unstable; urgency=medium
 
