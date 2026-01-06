@@ -1,6 +1,6 @@
 Source: simple-slices
 Section: admin
-Priority: optional
+#Priority: optional
 Maintainer: Alex Lieflander <public@atlief.com>
 Rules-Requires-Root: no
 Build-Depends:
@@ -8,7 +8,7 @@ Build-Depends:
  coreutils,
  m4,
  pandoc,
-Standards-Version: 4.6.2
+Standards-Version: 4.7.3
 Homepage: https://github.com/ATLief/simple-slices
 Vcs-Browser: https://github.com/ATLief/simple-slices
 Vcs-Git: https://github.com/ATLief/simple-slices.git
