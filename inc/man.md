@@ -5,7 +5,7 @@ Please report bugs to https://github.com/ATLief/simple-slices/issues.
 
 # AUTHOR
 
-Alex Lieflander <public@atlief.com>
+Alex Lieflander (public@atlief.com)
 :   Wrote this manpage for the Debian system.
 
 # COPYRIGHT
