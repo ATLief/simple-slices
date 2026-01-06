@@ -23,12 +23,12 @@ Recommends:
  simple-slices-bin (= ${source:Version}),
 Suggests:
  simple-slices-preset-desktop | simple-slices-preset-server,
-Description: Priority-based resource division via simple categories
- This package defines 7 categories ("slices") that each have a priority level determining which categories are given access to system resources first. The categories and their priorities were chosen based on what seemed to work well for most systems and users, but these can be customized if desired. Because it is based on priority, the performance of a category is only limited when the system must already limit performance; this package allows you to choose which programs are limited first, with the end result being that important programs perform better.
+Description: Nice for all system resources
+ Running programs on a Linux system can share available resources using a feature called "CGroups", which Systemd refers to as "Slices". It supports more types of resources than "nice" or "ionice" and natively integrates with Systemd units. Unfortunately, very few people benefit from these features due to the lack of user-friendly defaults.
  .
- Which programs are "important" is for the user to decide, whether that be faster games or faster web hosting. By assigning commands and programs to a category, they are automatically given the corresponding priority level. Instructions for usage and more technical information can be viewed by running "man simple-slices", but know that this package has been specifically designed to be simple and easy to use.
+ This project addresses that issue by defining 7 Slices with a unified priority level for CPU processing, disk bandwidth, RAM storage, and PID assignment (future versions may also support priorities for network bandwidth, swappiness, VRAM, and core types of hybrid CPUs). It can optionally change the default priority levels for certain types of programs to optimize performance for desktops or servers without needing additional configuration.
  .
- New users should install this package first, because it mostly matches how the system behaves before installing this package; resource distribution will only change once you start assigning things to categories. It is STRONGLY recommended to have udev installed.
+ To enable one of the optimized defaults, install one of the simple-slices-preset-* packages. Instructions for usage and more technical information can be viewed by running "man simple-slices".
 
 Package: simple-slices-bin
 Architecture: all
