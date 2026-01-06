@@ -1,5 +1,5 @@
-build/systemd/neutral/* lib/systemd/system/
-build/systemd/user/* lib/systemd/user/
+build/systemd/neutral/* usr/lib/systemd/system/
+build/systemd/user/* usr/lib/systemd/user/
 build/snippets/* usr/share/simple-slices/snippets
-build/modules/* lib/modules-load.d/
-build/udev/* lib/udev/rules.d/
+build/modules/* usr/lib/modules-load.d/
+build/udev/* usr/lib/udev/rules.d/

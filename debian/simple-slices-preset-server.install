@@ -1,1 +1,1 @@
-build/systemd/server/* lib/systemd/system/
+build/systemd/server/* usr/lib/systemd/system/
