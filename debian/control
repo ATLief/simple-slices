@@ -24,11 +24,23 @@ Recommends:
 Suggests:
  simple-slices-preset-desktop | simple-slices-preset-server,
 Description: Nice for all system resources
- Running programs on a Linux system can share available resources using a feature called "CGroups", which Systemd refers to as "Slices". It supports more types of resources than "nice" or "ionice" and natively integrates with Systemd units. Unfortunately, very few people benefit from these features due to the lack of user-friendly defaults.
+ Running programs on a Linux system can share available resources using a
+ feature called "CGroups", which Systemd refers to as "Slices". It supports
+ more types of resources than "nice" or "ionice" and natively integrates
+ with Systemd units. Unfortunately, very few people benefit from these
+ features due to the lack of user-friendly defaults.
  .
- This project addresses that issue by defining 7 Slices with a unified priority level for CPU processing, disk bandwidth, RAM storage, and PID assignment (future versions may also support priorities for network bandwidth, swappiness, VRAM, and core types of hybrid CPUs). It can optionally change the default priority levels for certain types of programs to optimize performance for desktops or servers without needing additional configuration.
+ This project addresses that issue by defining 7 Slices with a unified
+ priority level for CPU processing, disk bandwidth, RAM storage, and PID
+ assignment (future versions may also support priorities for network
+ bandwidth, swappiness, VRAM, and core types of hybrid CPUs). It can
+ optionally change the default priority levels for certain types of programs
+ to optimize performance for desktops or servers without needing additional
+ configuration.
  .
- To enable one of the optimized defaults, install one of the simple-slices-preset-* packages. Instructions for usage and more technical information can be viewed by running "man simple-slices".
+ To enable one of the optimized defaults, install one of the
+ simple-slices-preset-* packages. Instructions for usage and more technical
+ information can be viewed by running "man simple-slices".
 
 Package: simple-slices-bin
 Architecture: all
@@ -38,9 +50,14 @@ Depends:
 Recommends:
  simple-slices (= ${source:Version}),
 Description: Utilities to execute commands with specified priority
- This package is mostly a convenience wrapper for systemd-run which executes commands with a specified priority; this acts like a combination of "nice" and "ionice" but uses native systemd functionality and CGroups (which support additional features).
+ This package is mostly a convenience wrapper for systemd-run which executes
+ commands with a specified priority; this acts like a combination of "nice"
+ and "ionice" but uses native systemd functionality and CGroups (which
+ support additional features).
  .
- Although these utilities are intended to be used with the simple-slices package, any slices can be used. See the simple-slices package for a full description of its functionality.
+ Although these utilities are intended to be used with the simple-slices
+ package, any slices can be used. See the simple-slices package for a full
+ description of its functionality.
 
 Package: simple-slices-preset-desktop
 Architecture: all
@@ -51,7 +68,9 @@ Depends:
 Conflicts:
  simple-slices-preset-server,
 Description: Optimized version of simple-slices for desktops
- See the simple-slices package for a full description of its functionality. This package slightly changes the default priorities to be more optimized for desktop/graphical workloads.
+ See the simple-slices package for a full description of its functionality.
+ This package slightly changes the default priorities to be more optimized
+ for desktop/graphical workloads.
 
 Package: simple-slices-preset-server
 Architecture: all
@@ -62,4 +81,6 @@ Depends:
 Conflicts:
  simple-slices-preset-desktop,
 Description: Optimized version of simple-slices for servers
- See the simple-slices package for a full description of its functionality. This package slightly changes the default priorities to be more optimized for server workloads.
+ See the simple-slices package for a full description of its functionality.
+ This package slightly changes the default priorities to be more optimized
+ for server workloads.
