@@ -1,4 +1,4 @@
-simple-slices (0.7.1-1~beta2) UNRELEASED; urgency=medium
+simple-slices (0.7.1-1) unstable; urgency=medium
 
   * Clarified license as GPLv2 but not later
   * * This change was made earlier, but a file containing the "or later"
@@ -9,7 +9,7 @@ simple-slices (0.7.1-1~beta2) UNRELEASED; urgency=medium
   * Updated documentation
   * Refactored code
 
- -- Alex Lieflander <public@atlief.com>  Tue, 06 Jan 2026 13:24:15 -0500
+ -- Alex Lieflander <public@atlief.com>  Sun, 11 Jan 2026 12:08:02 -0500
 
 simple-slices (0.7.0-1) unstable; urgency=medium
 
